@@ -1,0 +1,1781 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Standard Library
+
+---
+
+These standard library functions are built in natively into the firmware and are available on all systems. You will likely not use these directly, but use the simpler wrapper methods provided by the individual modules.
+
+:::tip
+These are particularly useful for using [microcomputers](../catalog/microcomputers) or or for making custom modules.
+:::
+
+---
+
+:::caution
+Unless otherwise is stated, all Standard Libraries that calls for array require a byte array and not a float array. Use `b1` for example instead of `a1`.
+:::
+
+## Special Pins
+
+Some functions only work on pins with specific features.
+
+- Analog capable pins: P1, P2, P3, P4, P5, P6, P7, P8, P9, P17
+- Interrupt capable pins: P1, P2, P3, P4, P5, P6, P7, P12
+- PWM capable pins: P1, P2, P3, P4, P5, P6, P7, P8, P11
+
+:::tip
+PWM pins share timers. Changing the frequency on one will effect the other. Changing duty-cycle is okay however!
+
+- P1, P2
+- P3
+- P4, P11
+- P5, P6, P7, P8
+  :::
+
+---
+
+## Print
+
+Print to output.
+
+| Function                      | Description                                        |
+| ----------------------------- | -------------------------------------------------- |
+| `Print("text" or variable)`   | Print the value of its argument.                   |
+| `PrintLn("text" or variable)` | Print the value of its argument with line breaks.  |
+
+`Print()` accepts multiple argument, separated by commas, `Print("Value is: ", _v)`
+
+:::tip
+Print is invoked automatically when a function returns a value that is not consumed. Running `DRead(1, 1)` in immediate mode will show 0 or 1.
+:::
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.print("Hello World!")
+
+duelink.printLn("Hello World!")
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Timing
+
+| Function         | Description                        |
+| ---------------- | ---------------------------------- |
+| `Wait(duration)` | Wait for `duration` milliseconds.  |
+| `TickMs()`       | Read system ticks in milliseconds. |
+| `TickUs()`       | Read system ticks in microseconds. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.System.GetTickMicroseconds()
+
+duelink.System.GetTickMilliseconds():
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Pin Control
+
+### Stat LED
+
+Control the on-board STAT LED, found on every single DUELink module.
+
+| Function                | Description                                                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `StatLed(high, low, count)` | Blink the status (STAT) LED with `high` duration on in milliseconds and `low` duration in milliseconds. Repeat `count`, use -1 to repeat forever. |
+
+The status LED is automatically controlled by the engine by default, as explained on the [Specs](../specs.mdx) page. Calling `StatLed()` will take control over the LED. It is possible to release LED back to the engine by calling `StatLed(0,0,0)`.
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#Blink the STAT LED on for 1000 milliseconds, off for 1000 milliseconds, 10 times. 
+duelink.System.StatLed(1000, 1000, 10)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//Blink the STAT LED on for 1000 milliseconds, off for 1000 milliseconds, 10 times. 
+await duelink.System.StatLed(1000, 1000, 10);
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//Blink the STAT LED on 1000 milliseconds, off 1000 milliseconds, 10 times. 
+duelink.System.StatLed(1000, 1000, 10);
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Digital
+
+Access digital pins.
+
+| Function             | Description                                                                   |
+| -------------------- | ----------------------------------------------------------------------------- |
+| `DRead(pin, pull)`   | Return the digital state of `pin`. Enable `pull`: 0 = none, 1 = up, 2 = down. |
+| `DWrite(pin, state`) | Set `pin` to `state`: 1 = high or 0 = low.                                    |
+
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+# Read pin 2 level with pull up
+x = duelink.Digital.Read(2, 'PullUp')
+print(x)
+# Set pin 1 high
+duelink.Digital.Write(1, True)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+// Read pin 2 level with pull up
+duelink.Digital.Write(2, 'PullUp');
+print(x)
+// Set pin 1 high
+duelink.Digital.Write(1, True)
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+// Read pin 2 level with pull up
+duelink.Digital.Write(2, 'PullUp');
+print(x);
+// Set pin 1 high
+duelink.Digital.Write(1, True);
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Analog
+
+Access pins in their analog format.
+
+| Function             | Description                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| `VRead(pin)`         | Read calibrated voltage level on `pin`.                                               |
+| `PWrite(pin, power)` | Set `power` level on `pin` using PWM. Power level is 0 to 1, 0.33 is 33% for example. |
+
+`VRead()` only works with analog capable pins, see [Special Pins](#special-pins).
+`PWrite()` only works on PWM pins, see [Special Pins](#special-pins).
+
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+
+
+<TabItem value="py">
+
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.analog.PowerWrite(pin, dutycycle)
+
+duelink.analog.VoltageRead(pin)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+
+</TabItem>
+
+<TabItem value="dotnet">
+
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+
+
+</Tabs>
+
+</details>
+
+---
+
+### Beep
+
+Generate tones. This is a blocking function that works on all pins.
+
+| Function                         | Description                                                               |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| `Beep(pin, frequency, duration)` | Generate a beep on `pin` with `frequency` for `duration` in milliseconds. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+# Play frequency 256 on pin 0 for 1000 milliseconds.
+duelink.Sound.Beep(pin: int, frequency: int, duration: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+// Play frequency 256 on pin 0 for 1000 milliseconds.
+await duelink.Beep(0, 256, 1000)
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+// Play frequency 256 on pin 0 for 1000 milliseconds.
+duelink.Beep(0, 256, 1000);
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Melody
+
+Generate tones. This is a non-blocking function that works on PWM pins.
+
+`Melody()` requires a float array, use `a1` for example. Float arrays must be initialized with `{}` brackets.
+
+| Function                | Description                                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `MelodyP(pin, {notes})` | A non blocking call to play a melody in the background on `pin` using the frequencies and delays found in `notes`. |
+| `MelodyS(pin)`          | A non blocking call to stop a melody in the background on `pin`.                                                   |
+
+Use a float array for notes.
+
+```py
+Dim a1[]={500, 50, # 500Hz for 50ms
+        1000, 100} # 1000Hz for 100ms
+Melody(1, a1)
+```
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Sound.MelodyPlay(pin:int, notes: float[])
+
+duelink.Sound.MelodyStop(pin:int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Button
+
+Use interrupts to keep track of pins. Only available on interrupt capable pins, see [Special Pins](#special-pins) above!
+
+| Function             | Description                                                                |
+| -------------------- | -------------------------------------------------------------------------- |
+| `BtnEn(pin, enable, pull)` | Enable button scanning feature on `pin` with `pull` set to 0: no pull, 1: pullup, 2: pulldown. `enable`: 1 = Enable 0 = Disable. |
+| `BtnUp(pin)`         | `pin`: Returns 1 if `pin` transitioned to high level.                      |
+| `BtnDown(pin)`       | `pin`: Returns 1 if `pin` transitioned low.                                |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Button.IsValid(pin: int)
+
+duelink.Button.Enable(pin: int, enable: bool)
+
+duelink.Button.Up(pin: int)
+
+duelink.Button.Down(pin: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Frequency
+
+Sets a frequency (PWM) parameters to a pin. Only works on pins that support PWM.
+
+| Function                                    | Description                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `Freq(pin, frequency, duration, dutycycle)` | Set PWM `pin` to `frequency` for `duration` in milliseconds at `dutycycle` where 1 is 100%, 0.2 is 20%...etc. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Frequency.Set(pin: int, frequency, duration_ms=0, dutycyle=50)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Touch
+
+Read capacitive touch by charging a pin and then reading the discharge time in microseconds.
+
+| Function                                  | Description                                                                                                                                                                                                                         |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Touch(pin, charge_t, charge_s, timeout)` | Charges `pin` with charge state `charge_s` for charge time `charge_t` in milliseconds then read how long it takes for pin to discharge, returning value in microseconds. `timeout` is used in case the pin didn't change its state. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Touch.Read(pin: int, charge_t: int, charge_s: int, timeout: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Digital Control
+
+### Distance
+
+Read distance from ultrasonic distance sensors.
+
+| Function           | Description                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| `Dist(trig, echo)` | Returns distance in centimeters from ultrasonic distance sensor connected to `trig` and `echo` pins. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.DistanceSensor.Read(trigPin, echoPin)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Servo Motors
+
+Control servo motors.
+
+| Function               | Description                                     |
+| ---------------------- | ----------------------------------------------- |
+| `ServoSt(pin, degree)` | Position a servo on `pin` to `degree`: 0 to 180 |
+
+`ServoSt()` only works with PWM pins, see [Special Pins](#special-pins).
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Servo.Set(pin, position)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### I2C
+
+Access the I2C bus.
+
+| Function                                    | Description                                                                                      |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `I2cCfg(baudrate)`                          | `baudrate`: Set the I2C clock speed in khz, typically 100K or 400K, and 1M in some cases.        |
+| `I2cWr(address, [arrayWrite], [arrayRead])` | `address`: I2C slave address (7 bits) - `arrayWrite`: array to send, `arrayRead`: array to read. |
+
+Pins used for I2C are 15-SCL and 16-SDA.
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.I2C.Write(address: int, data: bytes, offset: Optional[int] = 0, length: int = None)
+
+duelink.I2C.Read(address: int, data: bytearray, offset: Optional[int] = 0, length: int = None)
+
+duelink.I2C.Configuration(self, baudrate)
+
+duelink.I2C.WriteRead(self, address: int, dataWrite: Optional[bytes], countWrite: int, dataRead: Optional[bytearray], countRead: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### SPI
+
+Access the SPI bus.
+
+| Function                     | Description                                                                       |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| `SpiCfg(mode, frequency)`    | Configure SPI with `mode`: 0 to 3 and `frequency` in KHz, ranging 200KHz to 20MHz. If LSB is needed, add set `mode` bit 7 to 1.|
+| `SpiWr(byte)`                | Write a `byte` then return the received byte.                                     |
+| `SpiWrs([data_w], [data_r])` | Write an byte array of `data_w` , also return an byte array of `data_r`.          |
+
+:::tip
+The system defaults to `SpiCfg(0,8000)`,means SPI mode 0, 8MHz, first bit is MSB
+:::
+
+:::tip
+`SpiCfg(0x80,8000)` means SPI mode 0, 8MHz, first bit is LSB
+:::
+
+Pins used for SPI are 12-SCK, 13-MISO, 14-MOSI. Use any GPIO for manual use of CS.
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Spi.Configuration(mode, frequency)
+
+duelink.Spi.WriteByte(data: int)
+
+duelink.Spi.WriteRead(dataWrite: Optional[bytes], dataRead: Optional[bytes]) 
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Serial (UART)
+
+Read and write serial data.
+
+| Function                  | Description                                                                                                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SerCfg(baud, rxsize)`    | Start serial port with `baud` and allocate a receive buffer of `rxsize`.                                                                                             |
+| `SerRd()`                 | Read a single byte from the receive buffer. Returns zero if it finds no data.                                                                                        |
+| `SerRds([data], timeout)` | Block the system till all data elements are filled. Terminate and return if no data received in `timeout` milliseconds. Returns how many bytes it read successfully. |
+| `SerWr(byte)`             | Write a single `byte` to the serial port.                                                                                                                            |
+| `SerWrs([data])`          | Write an array of `data`.                                                                                                                                            |
+| `SerB2R()`                | Return how many bytes are available in the receive buffer.                                                                                                           |
+| `SerDisc()`               | Discard the receive buffer.                                                                                                                                          |
+
+The pins used for UART are 1-RX and 2-TX. The DBG pin is an output indicating the sample point, used by us internally.
+
+Serial is handled by software with special internal features. There is also basic hardware UART option available when UART uplink is not needed, for example on boards with only USB uplink, such as [DueDuino](../catalog/microcomputer/dueduino). To activate the hardware UART, use a negative `baud` in `SerCfg()`, for example `SerCfg(-115200,100)`. Pins used for hardware UART are 21-TX and 22-RX. We do not support using both hardware and software UARTs simultaneously.
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Uart.Enable(baudrate)
+
+duelink.Uart.Write(data)
+
+duelink.Uart.BytesToRead()
+
+duelink.Uart.Read()
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### DMX
+
+Read and write from [DMX512](https://en.wikipedia.org/wiki/DMX512) devices. Must call `SerCfg(250000, 513)` before using these functions. The pins used for DMX are same as UART.
+
+| Function           | Description                                                      |
+| ------------------ | ---------------------------------------------------------------- |
+| `DmxW([channels])` | Write `channel` byte array.                                      |
+| `DmxU()`           | Enable receive to update internal buffer with incoming channels. |
+| `DmxRdy()`         | Returns 1 when there is a frame that was requested by `DmxU()`   |
+| `DmxR(channel)`    | Returns the value of a specific channel.                         |
+
+:::tip
+This feature only support DMX frames with `Start Code` zero.
+:::
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#There is no library called DMX
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Infrared
+
+Receive and decode signals from Infrared remotes.
+
+| Function           | Description                   |
+| ------------------ | ----------------------------- |
+| `IrEn(pin,enable)` | `enable` IR scanner on `pin`. |
+| `IrRead()`         | Returns key press value.      |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Infrared.Read()
+
+duelink.Infrared.Enable(pin: int, enable: bool)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Temperature
+
+Read temperature from a specific sensor
+
+| Function          | Description                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| `Temp(pin, type)` | Read temperature sensor with `type` connected to `pin`. Returns temperature in Celsius. |
+
+| ID  | Type                                      |
+| --- | ----------------------------------------- |
+| 0   | Internal CPU temperature (pin is ignored) |
+| 1   | DHT11                                     |
+| 2   | DHT12                                     |
+| 3   | DHT21                                     |
+| 4   | DHT22                                     |
+| 5   | One wire DS18B20 sensors                  |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Temperature.Read(pin: int, sensortype: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+### Humidity
+
+Read humidity from a specific sensor.
+
+| Function           | Description                                       |
+| ------------------ | ------------------------------------------------- |
+| `Humid(pin, type)` | Read a humidity sensor `type` connected to `pin`. |
+
+| ID  | Type     |
+| --- | -------- |
+| 0   | reserved |
+| 1   | DHT11    |
+| 2   | DHT12    |
+| 3   | DHT21    |
+| 4   | DHT22    |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.Humidity.Read(pin: int, sensortype: int)
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## System Info
+
+Read info about the system.
+
+| Function      | Description                                 |
+| ------------- | ------------------------------------------- |
+| `Info(type)` | Returns the a specific `type` of info! |
+
+| Type ID | Returned value |
+|---|---|
+| 0 | Product type |
+| 1 | Firmware version |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+duelink.System.Info()
+
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Graphics
+
+DUELink firmware include a flexible graphics facilities, detailed on the [Graphics Engine](./graphics) page.
+
+---
+
+## File System
+
+DUELink firmware include a complete file system facilities, detailed on the [File System](./filesystem) page.
+
+---
+
+## Scheduler
+
+See [Scheduler](./scheduler) for details.
+
+| Function                         | Description                                                                                              |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `SStart("func", timeout, count)` | Schedule `func` to run at every `timeout` (in milliseconds) for `count` times, or -1 to run forever.     |
+| `SStat("func")`                  | `func`: Return how many times the schedule will still need to run for, 0 is complete and -1 ids forever. |
+| `SAbort("func")`                 | `func`: Abort `func` scheduler.                                                                          |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+This is a script-only functionality!
+
+</details>
+
+---
+
+## Interrupts
+
+See [Interrupts](./interrupt) for details.
+
+| Function                             | Description                                                                                                                                                         |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `IStart("func", pin, trigger, pull)` | Enable interrupt on `pin` to trigger `func`. `trigger` is: 0 - falling, 1 - rising, 2 - rising and falling. Enable `pull`: 0 - pull down, 1 - pull up, 2 - no pull. |
+| `Istatled("func")`                      | Return status of interrupt on `func`: 0- no interrupt, 1- active interrupt.                                                                                         |
+| `IAbort("func")`                     | Abort interrupt for `func`.                                                                                                                                         |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+This is a script-only functionality.
+
+</details>
+
+---
+
+## Device Addressing
+
+These functions are needed for helping with [Daisylink](./daisylink) devices chained through [Downlink](../interface/downlink) connections.
+
+| Function                 | Description                                                                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Sel(add, add, add ...)` | Select a devices at `add` in the chain.                                                                                                                    |
+| `GetAdd()`               | Return the selected device(s) address.                                                                                                                     |
+| `SetAdd(add)`            | `add` Set the device's address. This command has chain reaction where each device sets the next one. **This is a special command and should not be used.** |
+
+The `Sel(add)` command accepts multiple addresses. `Sel(3,7)` will activate the third and and seventh modules in [Daisylink](./daisylink). Any command issue from that point forward are executed by both modules. Zero is broadcast address, where `Sel(0)` will activate all modules. Use `GetAdd()` to detect what modules are currently active.
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#No Library
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Math
+
+| Function | Description  |
+| --- | --- |
+| `Rnd(max)`    | Return a random number with `max` value. |
+| `Cos(rad)`      | Return cosine of `rad`.   |
+| `Sin(rad)`      | Return sine of `rad`.  |
+| `Tan(rad)`      | Return tangent `rad`.   |
+| `Sqrt(number)`  | Return square root of `number`.   |
+| `Abs(number)` | Return absolute value of a `number`.    |
+| `Ceil(number)` | Return ceiling of a `number`. |
+| `Floor(number)` | Floor a `number` |
+| `Round(number)` | Round a `number |
+| `Trunc(number)` | Return a truncated value `number`.       |
+| `IsNaN(number)` | Return 1 `number` is a valid value.      |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+These are script-only functions.
+
+</details>
+
+---
+
+## Converters
+
+| Function                                              | Description                                                                                               |
+| --- | --- |
+| `SprintF([buffer], format)` | Works like `sprintf()` in the C-language.                                                           |
+| `Fmt(...)` | Return formatted string, works just like `Print()`.                                                       |
+| `Hex(num)` | Returns the number in hex |
+| `Chr(num)` | Returns the ascii char of a number |
+| `Scale(value, fromLow, fromHigh, toLow, toHigh)`      | Return a scaled number from `value`.                                                                      |
+| `Memcpy([dst], offset_dst, [src], offset_src, count)` | Used to copy a block of memory from one location to another. `[dst]` and `[src]` must be same array type. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+This is a script-only functionality.
+
+</details>
+
+---
+
+## Asynchronous IO
+
+Enable Asynchronous IO. Detailed on the [Engine](./intro.mdx) main page.
+
+| Function       | Description                       |
+| -------------- | --------------------------------- |
+| `AsIo(enable)` | `enable`: 1 = Enable, 0 = Disable |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+This is a script-only functionality.
+</details>
+
+---
+
+## System Reset
+
+Reset or clear the system.
+
+| Function      | Description                   |
+| ------------- | ----------------------------- |
+| `Reset(mode)` | Reset the system with `mode`. |
+
+| mode | Description                                                                                                             |
+| ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| 0    | System Reset (just like pressing reset button).                                                                         |
+| 1    |  out the entire chip (factory reset!). This command must be executed twice for it to take effect.                    |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#Also appears in the System Info section
+duelink.System.Reset()
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Low Power
+
+| Function       | Description                                   |
+| -------------- | --------------------------------------------- |
+| `shtdn(wkpin)` | Shutdown module. `wkpin` can be pin P1 or P3. |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+This is a script-only functionality.
+
+</details>
+
+---
+
+## One-Time Programmable
+
+Write and read from a special memory type that can be written only once and can **never** be erased or changed! The size of this special memory region is 512 bytes (64 8-Byte blocks).
+
+| Function             | Description                                                                                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OtpR(addr)`         | Read a single byte from `addr`.                                                                                                                                                                             |
+| `OtpW(addr, [data])` | **\*STOP** Irreversible Action! Write `data` bytes to `addr`, where `addr` must be and data size must be multiple of 8. Return 1 on success, 0 if failed because an 8 byte block was previously written to. |
+
+:::tip
+Use byte arrays. If float array is used then only the first byte of each element is written.
+:::
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#No Library
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Coprocessor
+
+A few modules, such as [USB Host](../catalog/com/usb-host) include a coprocessor. See [Coprocessor](./coprocessor) for more details.
+
+---
+
+## RTC
+
+Access clock and date in the internal Real Time Clock (RTC).
+
+| Function         | Description                                                                                                                         |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| RtcW([timedate]) | Set (write) the desired time and date from `timedate` array in the RTC.                                                             |
+| RtcR([timedate]) | Read the current time and date into array. If 0 is used instead of array then the rtc value is printed as `HH:MM:SS - DD MMM YYYY`. |
+
+The array used for all RTC functions is 6 bytes, organized as: `[Second,minute,hour,day,mon, year]`. Values must be proper for their field. For example, there is no 70 seconds in time. Also, year is starting from the year 2000. For year 2025, just use 25. Hours are military 24 hours.
+
+```py
+Dim b1[6]= [0,10,18,27,2,25]
+RtcW(b1) # Set the current time to 18:10:00 27 Feb 2025
+
+Dim b2[6]
+RtcR(b2) # Read the time into array
+RtC(0) # Show the current time
+```
+
+:::tip
+Power loss will cause the RTC to lose its value. This is where [RTC](../catalog/sensor/rtc) comes in handy.
+:::
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#No Library
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---
+
+## Streams
+
+Streams allows a [Supported System](../system/intro.mdx) to "stream" data out of or in to a device. See [Stream](./stream.mdx) page.
+
+---
+
+## Misc
+
+| Function           | Description                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `Version()`        | Return firmware version and device ID in this format: `GHI Electronics DUELink v01.03:BB01`. |
+| `Echo(enable)`     | Set local echo functionality to `enable`: 1 = Enable or 0 = Disable. This is disabled by default. Run `Echo(1)` when using a terminal software.    |
+| `Len([array])` | Return the length of `array`.                                                                                                   |
+| `ReadVCC()`        | Return current system voltage.                                                                                      |
+| `Exit()`        | Terminate and exit the script.                                                                            |
+
+<details>
+  <summary>Hosted-Language Samples</summary>
+
+<Tabs groupid="language" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+    {label: '.NET', value: 'dotnet'},
+    {label: 'Arduino', value: 'arduino'},
+
+]}>
+
+<TabItem value="py">
+Start by setting up for [Python](../language/python) or [MicroPython](../language/micropython).
+
+```py
+#No Library
+# Some are needed like System.ReadVCC() but others do nto make sense for hosted libs
+```
+</TabItem>
+
+<TabItem value="js">
+Start by setting up for [JavaScript](../language/javascript).
+
+```js
+//code
+```
+</TabItem>
+
+<TabItem value="dotnet">
+Start by setting up for [.NET](../language/dotnet).
+
+```csharp
+//code
+```
+
+</TabItem>
+
+<TabItem value="arduino">
+Start by setting up for [Arduino](../system/arduino) or [C++](../language/cpp).
+```cpp
+//code
+```
+
+</TabItem>
+</Tabs>
+</details>
+
+---

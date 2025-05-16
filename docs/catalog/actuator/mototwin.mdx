@@ -1,0 +1,212 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# MotoTwin
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/mototwin-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/mototwin-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/mototwin-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/mototwin-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/mototwin-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**Dual motor controller**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+Dual motor controller
+
+<table><td width='50%'>
+**Key features**
+
+• Screw terminal connections <br/>
+• External power terminal block<br/>
+• 37x37mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-acmototwin-a.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-acmototwin-a.step)<br/>
+
+</td></table>
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `Init()`  | Initialize device |
+| `SMotorA(s, d, r)`  | Set Motor A. s: Speed, range 0..100, d: Duration in ms, 0 forever, r: 0: Normal - 1:  Revert |
+| `SMotorB(s, d, r)`  | Set Motor B. s: Speed, range 0..100, d: Duration in ms, 0 forever, r: 0: Normal - 1:  Revert |
+| `DVer()`            | This driver version. |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+
+# Pin 8: Sleep, active low
+# Pin 9: Fault, active low
+# Pin 4,5: A+, A-
+# Pin 6,7: B+, B-
+
+fn Init()
+    dwrite(8,1)
+    freq(4, 500, 0, 0)
+    freq(5, 500, 0, 0)
+    freq(6, 500, 0, 0)
+    freq(7, 500, 0, 0)
+fend
+
+fn SMotorA(s, d, r)
+    # s: speed in 0 to 100% 
+    # d: duration in ms, 0: forever 
+    # r: 0: Normal, 1: Revert
+    if (r = 0)
+        freq(5, 500, d, 0)
+        freq(4, 500, d, s / 100)
+    else
+        freq(4, 500, d, 0)
+        freq(5, 500, d, s / 100)
+    end
+fend
+
+fn SMotorB(s, d, r) # s: speed in 0 to 100, d: duration in ms, r: revert
+    if (r = 0)
+        freq(7, 500, d, 0)
+        freq(6, 500, d, s / 100)
+    else
+        freq(6, 500, d, 0)
+        freq(7, 500, d, s / 100)
+    end
+fend
+
+fn DVer()
+    return 0.1
+fend
+
+Init()
+
+##### User Code Starts Here #####
+
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+while 1
+SMotorA(50, 10000, 0) # Set Motor A half speed in 10 seconds
+SMotorB(50, 10000, 0) # Set Motor B half speed in 10 seconds
+Wait(10000)
+
+SMotorA(50, 10000, 1) # Set Motor A half speed in 10 seconds, revert
+SMotorB(50, 10000, 1) # Set Motor A half speed in 10 seconds, revert
+Wait(10000)
+
+wend
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number      | Price  |
+| ----------- | ---------------- | ------ |
+| MotoTwin    | GDL-ACMOTOTWIN-A | $00.00 |

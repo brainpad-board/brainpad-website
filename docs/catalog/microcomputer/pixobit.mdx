@@ -1,0 +1,227 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# PixoBit
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main"  width="75%" src="/img/catalog/pixobit-front.png" />
+</Zoom>
+
+  <table>
+   <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/pixobit-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/pixobit-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/pixobit-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/pixobit-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**micro:bit form factor with 128x64 OLED 0.96" display**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+micro:bit form factor with 128x64 OLED 0.96" display
+
+<table><td width='50%'>
+**Key features**
+
+• 128x64 OLED 0.96" display<br/>
+• Buzzer<br/>
+• micro:bit inspired edge connector<br/>
+• USB-C connector<br/>
+• 52x42mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-mcpixobit-b.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-mcpixobit-b.step)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+
+| Function    | Description                                               |
+| ----------- | --------------------------------------------------------- |
+| `Init()`    | Initialize the display. Automatically called on power up. |
+| `GetW()`    | Get display width: 128                                    |
+| `GetH()`    | Get display height: 64                                    |
+| `IsColor()` | Returns 0.                                                |
+| `DVer()`    | This driver version.                                      |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+dim b1[2]
+
+fn SendCmd(c)
+	b1[0] = 0
+	b1[1] = c
+    i2cwr(0x3c,b1,[])
+fend
+
+Init()
+show()
+
+fn Init()
+dwrite(11,1) # reset pin
+# config I2C bus with 400Kz
+i2ccfg(400)
+Wait(20)
+GfxCfg(1,{0x3C},128,64, 1)
+
+
+SendCmd(0xAE):SendCmd(0x00):SendCmd(0x10)
+SendCmd(0x40):SendCmd(0x81):SendCmd(0xCF)
+SendCmd(0xA1):SendCmd(0xA6):SendCmd(0xA8)
+SendCmd(0x3F):SendCmd(0xD3):SendCmd(0x00)
+SendCmd(0xD5):SendCmd(0x80):SendCmd(0xD9)
+SendCmd(0xF1):SendCmd(0xDA):SendCmd(0x12)
+SendCmd(0xDB):SendCmd(0x40):SendCmd(0x8D)
+SendCmd(0x14):SendCmd(0xAF):SendCmd(0xC8)
+SendCmd(0x20):SendCmd(0x00):SendCmd(0x21)
+SendCmd(0):SendCmd(128-1)
+SendCmd(0x22):SendCmd(0):SendCmd(7)
+
+fend
+
+fn IsColor()
+return 0
+fend
+
+fn GetW()
+return 128
+fend
+
+fn GetH()
+return 64
+fend
+
+fn DVer()
+return 0.1
+fend
+##### User Code Starts Here #####
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+  Use [Console](../../console) to modify the default driver by adding this
+  sample. 
+  ```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+_x = 50
+_d = 10
+_w = GetW()
+while 1
+ circle(1,_x,GetH()/2,10)
+ Show()
+ _x=_x+_d
+ if (_x > _w || _x <0)
+     _d = _d * -1
+      Clear(0)
+ end
+ wait(10)
+wend
+  ```
+</TabItem>
+
+<TabItem value="py">
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+x = 50
+d = 10
+width = int(float(duelink.Engine.Run("getw()")))
+height = int(float(duelink.Engine.Run("geth()")))
+while True:
+    duelink.Graphics.Circle(1, x, height//2, 10)
+    duelink.Graphics.Show()
+    x = x + d
+    if (x > width or x < 0):
+        d = d * -1
+        duelink.Graphics.Clear(0)
+    time.sleep(0.1)
+```
+ </TabItem>
+
+<TabItem value="js">
+```js
+//code
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number     | Price  |
+| ----------- | --------------- | ------ |
+| Pixobit     | GDL-MCPIXOBIT-B | $00.00 |

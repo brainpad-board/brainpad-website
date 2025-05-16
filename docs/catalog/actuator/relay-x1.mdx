@@ -1,0 +1,169 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Relay X1
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/relay-x1-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/relay-x1-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/relay-x1-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/relay-x1-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/relay-x1-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**Single Port Relay Controller**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+Single Port Relay Controller
+
+<table><td width='50%'>
+**Key features**
+
+• Screw terminal<br/>
+• 32x37mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-acrelayx1-a.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-acrelayx1-a.step)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `Set(value)`       | Value 1: On, 0: Off     |
+| `DVer()`       | This driver version.        |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+fn Set(v)
+    dwrite(19, v)
+fend
+
+fn DVer()
+    return 0.1
+fend
+##### User Code Starts Here #####
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+while 1
+  Set(1)
+  wait(1000)
+  set(0)
+  wait(2000)
+wend
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number     | Price  |
+| ----------- | --------------- | ------ |
+| Relay X1    | GDL-ACRELAYX1-A | $00.00 |

@@ -1,0 +1,190 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# LED R16
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Front" width="75%" src="/img/catalog/led-r16-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/led-r16-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/led-r16-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/led-r16-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/led-r16-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**16 LED Ring Module**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+LED R16
+
+<table><td width='50%'>
+**Key features**
+
+• 16 LED Ring <br/>
+• 32x32mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+ 
+📄[Schematics](pathname:///sch/gdl-lledr16-b.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-lledr16-b.step)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `SetLed(l, v)`  | Set Led, l: led id from 1..16, v: value 0=off, 1=on |
+| `DVer()`        | This driver version.
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+fn SetLed(l, v) 
+    if l > 16
+        return
+    end
+    
+    dwrite(l,v)    
+fend
+
+fn DVer()
+  return 0.1
+fend
+
+##### User Code Starts Here #####
+
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+_i = 1
+while 1
+    
+    if _i = 1
+        SetLed(16, 0)
+    else
+        SetLed(_i-1, 0)
+    end
+    
+    SetLed(_i, 1)
+    
+    Wait(100)
+
+    _i = (_i + 1)
+    
+    if (_i>16)
+        _i = 1
+    end
+wend
+
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number   | Price  |
+| ----------- | ------------- | ------ |
+| LED R16     | GDL-LLEDR16-B | $00.00 |

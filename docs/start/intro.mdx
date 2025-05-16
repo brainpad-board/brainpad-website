@@ -1,0 +1,188 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Getting Started
+
+---
+
+![Getting Started](pathname:///img/getting-started.png)
+
+DUELink is here to help you no matter if you are a [commercial user](./commercial), a [maker](./makers), or an [educator](./education).
+
+There are many ways to use DUELink, with its long list of [languages](../language/intro) and [supported systems](../system/intro). This page will focus on the bare minimum ot get you started with one of the available [microcomputers](../catalog/microcomputers), such as the ultra-low-cost [CincoBit](../catalog/microcomputer/cincobit) and its cousin [PixoBit](../catalog/microcomputer/pixobit)...
+
+![CincoBit and Pixobit](pathname:///img/cincobit-pixobit.png)
+
+... or the Arduino-friendly [DueDuino](../catalog/microcomputer/dueduino).
+
+![DueDuino](pathname:///img/dueduino.png)
+
+---
+
+## Hardware Setup
+
+Make sure your DUELink hardware is functional using [demo.duelink.com](https://demo.duelink.com/). Start by plugging in your device to a USB port, open the demo site and connect the device.
+
+![Demo Connect](pathname:///img/demo-connect.png)
+
+The first tab is for controlling the STAT LED found on all DUELink modules. Change the parameters and observe the STAT LED on the board.
+
+![Demo LED tab](pathname:///img/demo-led-tab.png)
+
+If you are using a board with `A` or `LDR` buttons, you can also try Digital read on these buttons. These buttons are connected to pin `20` and set `Pull` to `Down`. You can now hold the button up or down while clicking `Read`.
+
+![Read Button](pathname:///img/demo-digital-read.png)
+
+When connected, the demo site shows the device firmware version.
+
+![Device Firmware](pathname:///img/demo-firmware-version.png)
+
+It is important that your board is updated with latest firmware. We are always making improvements and adding new features. The [downloads](../downloads) page lists the latest firmware version. If your device does not have the latest, then update the firmware.
+
+To update the firmware, open DUELink console [https://console.duelink.com/](https://console.duelink.com/) and click "firmware".
+
+![Firmware](pathname:///img/due-firmware.png)
+
+Follow the instructions and load the latest firmware. Full details are found on the [loader](../loader) page.
+
+---
+
+## Software Setup
+
+For starter there is zero setup! Just open the console and try the available code demos! It is all documented on the [Internal Engine](../engine/intro) and its [scripting language](../engine/scripting).
+
+![Demos](pathname:///img/due-demos.png)
+
+Now, you are ready to use one of the [languages](../language/intro), such as [Python](../language/python) and [JavaScript](../language/javascript). We assume you already know how to use the language you have selected. The next section will blink an LED, the "Hello World!" of programming circuits!
+
+---
+
+## Hello World!
+
+These are examples for only a few of the available [Hosted Language](../language/intro) options. There are also several [non-hosted](../language/nonhosted) options as well.
+
+This example uses the `statled()` API, just like you did earlier in the demo site. Note how the program will terminate but the LED will continue to blink. The samples blinks the led 200ms on then 200ms off for 50 times!
+
+<Tabs groupid = "samples" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'Javascript', value: 'js'},
+    {label: '.NET C#', value: 'dotnet'},
+  ]}>
+
+<TabItem value="py">
+
+You need ot install the DUELink Python library using `pip install DUELink`, see [Python](../language/python) page for details.
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+
+# Connect
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+
+# Blink
+duelink.System.StatLed(200,200,50)
+
+```
+
+</TabItem>
+
+<TabItem value="js">
+You need ot install the DUELink JavaScript library using `npm install DUELink` & `npm install serialport`, see [JavaScript](../language/javascript) page for details.
+
+```js
+const { SerialUSB } = require("dlserialusb");
+const { DUELinkController } = require("duelink");
+const { Util } = require("duelink");
+
+// Connect
+let duelink = new DUELinkController(new SerialUSB());
+await duelink.Connect();
+
+// Blink
+await duelink.System.StatLed(200, 200, 50);
+```
+
+</TabItem>
+<TabItem value="dotnet">
+You need ot install the DUELink Nuget `GHIElectronics.DUELink`, see [.NET](../language/dotnet.mdx) page for details.
+
+```csharp
+using GHIElectronics.DUELink
+
+// Connect
+var availablePort = DUELinkController.GetConnectionPort();
+var duelink = new DUELinkController(availablePort);
+
+// Blink
+duelink.System.StatLed(200, 200, 50);
+
+```
+
+</TabItem>
+</Tabs>
+
+This is an example will also blink the LED but using digital write API. The STAT LED is always pin 0. Note how this program will loop forever. Stopping the program will stop the LED from blinking.
+
+<Tabs groupid = "samples" queryString="show"
+  values={[
+    {label: 'Python', value: 'py'},
+    {label: 'Javascript', value: 'js'},
+    {label: '.NET C#', value: 'dotnet'},
+  ]}>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+
+while True:
+  duelink.Digital.Write(0, 1)
+  time.sleep(0.5)
+  duelink.Digital.Write(0, 0)
+  time.sleep(0.5)
+
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+import {SerialUSB} from './serialusb.js';
+import * as DUELink from './duelink.js';
+import { Util } from "./util.js";
+
+let duelink = new DUELink.DUELinkController(new SerialUSB());
+await duelink.Connect();
+
+while (true){
+    await duelink.Digital.Write(0, 1)
+    await Util.sleep(500)
+    await duelink.Digital.Write(0, 0)
+    await Util.sleep(500)
+}
+```
+
+</TabItem>
+<TabItem value="dotnet">
+
+```cs
+var availablePort = DUELinkController.GetConnectionPort();
+var duelink = new DUELinkController(availablePort);
+
+while (true) {
+    duelink.Digital.Write(0, 1);
+    Thread.Sleep(500);
+    duelink.Digital.Write(0, 0);
+    Thread.Sleep(500);
+}
+```
+
+</TabItem>
+</Tabs>

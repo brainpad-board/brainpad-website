@@ -1,0 +1,209 @@
+# Loader
+
+---
+
+The STM32C071 chip utilized on all DUELink modules include an ST loader that we utilize for firmware updates using `USB DFU` standard. 
+
+The loaded "firmware" can be the supported DUELink or MicroBlocks. It can also be a custom firmware built using [C++](./language/cpp) language page. The [Arduino](./system/arduino) IDE can also be used ot build custom firmware; however, the IDE has a built-in DFU upload capability.
+
+## Update Options
+
+Users have two options for firmware updates. We recommend using the [Console](./console) as a first choice.
+
+![DUELink Console Firmware Menu](pathname:///img/console-firmware.png)
+
+Advance users can also use the [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) tool.
+
+![Select USB](pathname:///img/stm-select-usb.png)
+
+Either way, the first step is in placing the board in loader mode.
+
+---
+
+## Entering the Loader
+
+Locate the `LDR` button on your module. On some board, the `LDR` button is labeled with `A`.
+
+![Setting Boot mode mode](pathname:///img/ldr-a-buttons.png)
+
+Press and **continue to hold** the button while resetting the board. If there is no reset button, then unplug the USB cable first. Now, hold the button while inserting the USB cable. Wait one second after the cable is inserted then release the button.
+
+If neither `LDR` nor `A` button is available, then the LDR pads are found on small through-hole pads. Bend and place a small metal paper clip (or a wire) between these 2 pads, and reset/repower the board. You can remove the paper clip after the board is powered up.
+
+![Setting Boot mode](pathname:///img/boot-mode.png)
+
+:::info
+LDR is the name we use for STM32's BOOT0 pin, which is button A in some cases. 
+:::
+
+---
+
+## Console Update
+
+Once the device is in the loader mode, the system will detect a USB `DFU in FS Mode` device.
+
+![Verify DFU mode](pathname:///img/device-manager-dfu.png)
+
+From [https://console.duelink.com/](https://console.duelink.com/), click `Firmware` on the top menu.
+
+![DUELink Console Firmware Menu](pathname:///img/due-firmware.png)
+
+Follow the instructions to update the firmware.
+
+---
+
+## STM32 Tools Update
+
+The [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) tool is good advanced option.
+
+First, download the desired firmware file from the [Downloads](downloads) page. Connect the module and enter the loader mode, as explained before.
+
+STM32CubeProgrammer will now detect a USB DFU device, select `USB` from the drop down and click `Connect`.
+
+![Select USB](pathname:///img/stm-select-usb.png)
+
+Click on the side tab then select the file you downloaded from the [Download](downloads) page, then click `Start Programming`
+
+![Select file](pathname:///img/stm-selectfile-program.png)
+
+The board now has the desired file loaded!
+
+---
+
+## I2C & UART Update
+
+This page focuses on firmware updates using USB DFU mode. We recommend to always use USB DFU when possible; however, using I2C and UART to send firmware updates are other possible options.
+
+When using the `U` (uplink) connector, the loader can be accessed using USB or UART. 
+
+Tools are provided for UAB update but it is up to tey user to implement the necessary UART protocol for firmware update. The "[STM32 microcontroller system memory boot mode](https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf)" application note covers all the needed details.
+
+The same document also covers I2C. The needed I2C may or may not be available on the module being used. For example, custom designs that use [Stamp](./catalog/microcomputer/stamp) module can wire the desired I2C pins as they see fit. Use I2C for software update only if there is a very good reason on doing so!
+
+
+---
+
+=====================
+
+:::caution
+Everything following this caution is legacy and should not be used!! 
+
+It will be removed soon!
+:::
+
+=====================
+
+---
+
+
+
+
+All modules ship with GHI Electronics' DUELink Loader. This loader allows for firmware updates over USB, I2C, and UART. It uses XMODEM 1K protocol to send firmware updates, which is a common old standard found in any terminal software, such as TeraTerm. To make things even easier, we have it supported right from within the DUELink Console.
+
+
+## Legacy Loader Commands
+
+
+- V: Return firmware version, device ID and loader version, in this format: GHI Electronics DUELink v01.03:BB01:01.00. If no firmware is found, version will show 00.00 instead.
+- R: Run the firmware if found, regardless of LDR pin state.
+- E: Erase firmware.
+- X: Start XMODEM 1K loading process.
+- Z: Completely wipeout the chip. This even wipes out the loader itself and changes the LDR pin back to BOOT0 for ST Loader.
+- N: Return name of the product, "DUELink".
+
+:::tip
+These commands are accessible from a terminal software for manual use. Provided tools such as the [Console](console) will automatically trigger needed commands.
+:::
+
+---
+
+## Legacy Firmware Update
+
+On power up, a DUELink module will start its Loader software. If LDR pin is high, it will hold and wait for commands (LDR has a built in pull down resistor). If it is low, it will check for a valid firmware (the operating system) to execute it.
+
+:::tip
+The loader automatically changes ST-loader BOOT0 pin to LDR on power up. This is needed after system wipeout.
+:::
+
+Firmware updates are necessary to bring the latest features and improvements to your modules. You will rarely ever need to update/remove the Loader but you will need to know how to update the firmware.
+
+:::caution
+This section assumes you already have the loader. If not, see "Reloading Loader" section.
+:::
+
+First, set the board in loader mode by pressing the LDR/A button, or shorting the LDR pads if there is no button.
+
+![LDR, A, pads](pathname:///img/ldr-a-pads.png)
+
+Reset the board while holding LDR high, and the PC will see a Loader device COM port, not DFU. If you see DFU then your device does not have a Loader. See "Reloading Loader" section.
+
+![Verify Serial Device](pathname:///img/device-manager-serial.png)
+
+You can also enter the loader using software. From firmware, enter `Reset(1)` command. This will reset the system in loader mode. Note that if [USB](./interface/usb) is used, the firmware will disconnect and the the loader will load with a new COM port.
+
+The `Reset(1)` command can be entered from console immediate window, or from a terminal software. This can be sent fom any system over [I2C](./interface/i2c) or [Serial UART](./interface/uart) for example.
+
+You now have 2 options for updating the firmware, using console or using terminal.
+
+**Using Console**
+
+Click `Firmware` on the top menu.
+
+![DUELink Console Firmware Menu](pathname:///img/due-firmware.png)
+
+Follow the instructions to update the firmware. Note how you are already in loader mode at this point, so you can skip the first few steps.
+
+**Using Terminal**
+
+Put the board in loader mode by pressing the LDR/A button, or shorting the LDR pads if there is no button.
+Open a terminal software, such as [Tera Term](https://teratermproject.github.io/index-en.html) and connect the appropriate COM port.
+
+![Connect the device](pathname:///img/teraterm-connect-serial.png)
+
+Hit `X`then `Enter` and `Y` to start XMODEM. You will see `CCCCC...` coming back.
+
+![Connect the device](pathname:///img/teraterm-x-y.png)
+
+From the menu, select `File->Transfer->XMODEM->Send`.
+
+![Connect the device](pathname:///img/teraterm-xmodem-send.png)
+
+**IMPORTANT:** Select the 1K option and then select the firmware file you want to load. You can get any firmware you need from the [Downloads](downloads) page.
+
+![select the file](pathname:///img/teraterm-selectfile-1k.png)
+
+When complete, remove any jumpers wires on LDR, if any, and reset the board. Reconnect the terminal, but to the new COM port reflecting firmware, then enter `version()` command to see what version is loaded.
+
+---
+
+## Legacy System Wipeout!
+
+When desired, it is possible to completely wipe out the chip, including erasing the loader and switching LDR pin back to BOOT0. This is useful when using different software, such as [Arduino](./system/arduino).
+
+This can be done from the loader or from the firmware:
+
+**Using Firmware**
+
+Use `Reset(3)` command. That is it! See [Standard Library](./engine/stdlib). You can send this command from [Console](console) in the immediate window. Then send `Y` to confirm. Or, you can use a terminal software, such as [Tera Term](https://teratermproject.github.io/index-en.html).
+
+**Using loader**
+
+Enter the loader mode using LDR pads/button (button might be labeled `A`). Enter the Z command and confirm (Press Y).
+
+---
+
+## Legacy Reloading Loader & Firmware
+
+In case the loader was removed; to run an [Arduino](system/arduino) program for example, you can flash the DUELink loader back onto the device using [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) tool. The Loader HEX file is found on the [Downloads](downloads) page. Connect the module to USB, directly if it has USB, or using [USB Hook](catalog/accessory/usb-hook). Now, push LDR, "A" button or place a paperclip in the loader pads and reset/repower.
+
+![LDR, A, pads](pathname:///img/ldr-a-pads.png)
+
+STM32CubeProgrammer will now detect a USB DFU device, select `USB` from the drop down and click `Connect`.
+
+![Select USB](pathname:///img/stm-select-usb.png)
+
+Click on the side tab then select the `Loader` file you downloaded from the [Download](downloads) page, then click `Start Programming`
+
+![Select file](pathname:///img/stm-selectfile-program.png)
+
+The board now has the GHI Electronics DUELink Loader, ready to accept the firmware. See "Firmware Update" above if you do not know how.

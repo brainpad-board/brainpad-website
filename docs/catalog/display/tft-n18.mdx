@@ -1,0 +1,275 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# TFT N18
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/tft-n18-front-main.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/tft-n18-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/tft-n18-pencil.png" />
+      </Zoom>
+    </td>
+     <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/tft-n18-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/tft-n18-back-45.png" />
+      </Zoom>
+    </td>
+    
+    
+  </table>
+  <p>**1.8" - 160x128 Color TFT LCD display**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+1.8" - 160x128 Color TFT LCD display
+
+<table><td width='50%'>
+**Key features**
+
+• 1.8" display<br/>
+• 128x64<br/>
+• 62x37mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-dtftn18-b.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-dtftn18-b.step)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+
+| Function       | Description                                               |
+| -------------- | --------------------------------------------------------- |
+| `Init()`       | Initialize the display. Automatically called on power up. |
+| `Mode(direct)` | Set the graphics mode to 1-direct, 0-buffered (default).  |
+| `GetW()`       | Get display width: 64 in buffered, 128 in direct.        |
+| `GetH()`       | Get display height: 80 in buffered, 160 in direct.        |
+| `IsColor()`    | Returns 1.                                                |
+| `DVer()`       | This driver version.                                      |
+
+By default, the display is initialized in buffered mode.
+
+:::tip
+See [Graphics](../../engine/graphics) for available drawing functions, such as `Text()` and `Circle()`.
+:::
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+# 16 sel pin 
+# 17 reg sel pin
+
+_m = 0 # 0: buffered, 1: direct mode
+
+dim b1[2]
+ 
+fn Init()
+    Mode(0)# buffered
+fend
+
+fn DVer()
+    return 0.1
+fend
+ 
+fn Mode(m)
+    spicfg(0, 24000)
+    _m=m
+ 
+    If m = 0 # buffered
+     gfxcfg(2, {16,17},64,80, 2)
+ 
+    else # direct
+     gfxcfg(2,{16,17},128,160, 0)
+    end
+ 
+ 
+    dwrite(16, 1)#deselect
+    dwrite(9,0)#reset
+    wait(10)
+    dwrite(9,1)#reset
+    wait(120)
+    dwrite(8,1)# backlight
+    Cmd(0x11,[])
+    wait(120)
+ 
+    Cmd(0xb1,[0x01,0x2C,0x2D])
+    Cmd(0xb2,[0x01,0x2C,0x2D])
+    Cmd(0xb3,[0x01,0x2C,0x2D,0x01,0x2C,0x2D])
+    Cmd(0xb4,[0x07])
+ 
+    Cmd(0xc0,[0xa2,0x02,0x84])
+    Cmd(0xc1,[0xC5])
+    Cmd(0xc2,[0x0a,0x00])
+    Cmd(0xc3,[0x8a,0x2a])
+    Cmd(0xc4,[0x8a,0xee])
+    Cmd(0xc5,[0x0E])
+ 
+    Cmd(0x36,[0xc0])
+ 
+    Cmd(0xE0,[0x0f,0x1a,0xf,0x18,0x2f,0x28,0x20,0x22,0x1f,0x1b,0x23,0x37,0,7,2,0x10])
+    Cmd(0xE1,[0xf,0x1b,0xf,0x17,0x33,0x2c,0x29,0x2e,0x30,0x30,0x39,0x3f,0,7,3,0x10])    
+ 
+    Cmd(0x2A,[0,0,0,0x7f])
+    Cmd(0x2b,[0,0,0,0x9f])
+    Cmd(0xf0,[1])
+    Cmd(0xf6,[0])
+ 
+    Cmd(0x3A,[0x05])
+    Cmd(0x29,[])
+fend
+
+fn Cmd(c, b1)
+    dwrite(16, 0)#select
+    dwrite(17, 0)#cmd
+    SpiWr(c)
+    dwrite(17, 1)#data
+    for i in range(Len(b1))
+        SpiWr(b1[i])
+    next
+    dwrite(16, 1)#deselect
+fend
+ 
+fn IsColor()
+    return 1
+fend
+ 
+fn GetH()
+    if _m = 0
+        return 80
+    else
+        return 160
+    end
+fend
+ 
+fn GetW()
+    if _m = 0
+        return 64
+    else
+        return 128
+    end
+fend
+ 
+Init()
+
+##### User Code Starts Here #####
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+Clear(0x0000FF) # Clear to blue color
+
+Text("Hello", 0x00FF00, 10, 2)
+Circle(0xff0000,10, 10,10) 
+Fill(0xffFFFF,10, 20,20, 10) 
+Rect(0xffFFFF,10, 40,20, 10) 
+Line(0xffFFFF,10, 60,40, 60) 
+
+Show()
+
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description                        | Part Number   | Price  |
+| ---------------------------------- | ------------- | ------ |
+| 1.8" 160x128 Color TFT LCD display | GDL-DTFTN18-B | $00.00 |

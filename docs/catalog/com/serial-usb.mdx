@@ -1,0 +1,174 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Serial USB
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/serialusb-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/serialusb-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/serialusb-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/serialusb-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/serialusb-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**Serial USB Module**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+Serial USB Module
+
+<table><td width='50%'>
+**Key features**
+
+• USB-C Connector<br/>
+• 32x27mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-cmserialusb-a.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-cmserialusb-a.step)<br/>
+
+</td></table>
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `DVer()`    | Returns the driver version            |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+:::tip
+Serial-Usb module uses [serial-uart API](../../engine/stdlib#serial-uart) directly. No other drivers needed..
+:::
+
+```py
+##### Driver Code Starts Here ###
+fn DVer()
+  return 0.1
+fend
+##### User Code Starts Here #####
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+SerCfg(115200, 1024) # set baudrate 115200, 1024 byte buffer
+
+dim b1[1]
+while 1
+    if SerB2R() > 0
+        SerRds(b1, 1000) # read data
+        b1[0] = b1[0] + 1 # increase read byte by 1
+        SerWrs(b1) # write back to sender
+    end
+    
+    Wait(1)
+wend
+
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number       | Price  |
+| ----------- | ----------------- | ------ |
+| Serial USB  | GDL-CMSERIALUSB-A | $00.00 |

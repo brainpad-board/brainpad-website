@@ -1,0 +1,175 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Fan
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/fan-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/fan-back.png" />
+      </Zoom>
+    </td>
+     <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/fan-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/fan-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/fan-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**Fan Motor Module**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+Fan Motor Module
+
+<table><td width='50%'>
+**Key features**
+
+• On-board motor<br/>
+• 2 blade fan<br/>
+• 42x42mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-acfan-b.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-acfan-b.step)<br/>
+
+
+</td></table>
+</TabItem>
+
+<TabItem value="drivers">
+| Function      | Description          |
+| --------------| -------------------- |
+| `Fan(speed)`  | speed: -100 to 100   |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+########## Fan Driver ###########
+fn Fan(s)
+    if s >100
+        s=100
+    end
+    if s <-100
+        s=-100
+    end
+    
+    if s<0
+    s=s*-1
+        pwrite(3,s/100)
+        dwrite(4,0)
+    else
+        pwrite(4,s/100)
+        dwrite(3,0)
+    end
+fend
+##### User Code Starts Here #####
+
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number | Price  |
+| ----------- | ----------- | ------ |
+| Fan Motor   | GDL-ACFAN-B | $00.00 |

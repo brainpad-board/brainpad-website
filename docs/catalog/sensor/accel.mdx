@@ -1,0 +1,217 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Accel
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Front" width="75%" src="/img/catalog/accel-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/accel-back.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/accel-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/accel-front-45.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/accel-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**Accelerometer Module**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+Accelerometer Module
+
+<table><td width='50%'>
+**Key features**
+
+• position, velocity, orientation, shock, vibration, and tilt <br/>
+• 22x20mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+ 
+📄[Schematics](pathname:///sch/gdl-seaccel-a.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-seaccel-a.step)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `Init()`  | Initialize device |
+| `DVer()`  | This driver version. |
+| `GetX()`  | Return X value |
+| `GetY()`  | Return Y value |
+| `GetZ()`  | Return Z value |
+
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+dim b1[1]
+
+fn Init()
+    i2ccfg(400)    
+    i2cwr(0x4c, [0x20, 2], 0) # 0x4c: I2c address, [0x20,1] MC3216_Outcfg
+    i2cwr(0x4c, [0x07, 1], 0) # 0x4c: I2c address, [0x07,1] MC3216_Mode
+fend
+
+fn DVer()
+    return 0.1
+fend
+
+fn Convert(c)
+    if (c > 127)
+        c = c - 256
+    end
+    
+    c = c * 1024 / 64
+    
+    if (c > 1024)
+        c = 1024
+    end
+    
+    if (c < -1024)
+        c = -1024
+    end
+    
+    return c
+fend
+
+fn GetX()
+    i2cwr(0x4C, [0x0D], b1) # 0x0D MC3216_XOut
+    return Convert(b1[0])
+fend
+
+fn GetY()
+    i2cwr(0x4C, [0x0F], b1) # 0x0F MC3216_YOut
+    return Convert(b1[0])
+fend
+
+fn GetZ()
+    i2cwr(0x4C, [0x11], b1) # 0x11 MC3216_ZOut
+    return Convert(b1[0])
+fend
+
+Init()
+
+##### User Code Starts Here #####
+
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+while 1
+    wait(1000)
+    
+    println("x = ", GetX())
+    println("y = ", GetY())
+    println("z = ", GetZ())
+
+wend
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number   | Price  |
+| ----------- | ------------- | ------ |
+| Accel       | GDL-SEACCEL-A | $00.00 |

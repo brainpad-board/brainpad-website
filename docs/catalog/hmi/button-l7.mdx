@@ -1,0 +1,286 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Button L7
+
+<div style={{ textAlign: "center" }}>
+
+<Zoom>
+<img alt="Main" width="75%" src="/img/catalog/button-l7-front.png" />
+</Zoom>
+
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/button-l7-back.png" />
+      </Zoom>
+    </td>
+     <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/button-l7-pencil.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/button-l7-front-45.png" />
+      </Zoom>
+    </td>
+     <td>
+      <Zoom>
+        <img alt="Size" src="/img/catalog/button-l7-back-45.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**7 Button Module**</p>
+</div>
+
+---
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+7 Button Module
+
+<table><td width='50%'>
+**Key features**
+
+• 7 Buttons<br/>
+• 52x57mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-hibuttonl7-b.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-hibuttonl7-a.step)<br/>
+
+</td></table>
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          |
+| -------- | -------------------- |
+| `Init()`        | Initialize device |
+| `DVer()`        | This driver version. 
+| `BtnPress(b)`        | return 1 if button b pressed, b is alias: (up, down, left, right, back, forward, enter) |
+| `BtnRelease(b)`        | return 1 if button b released, b is alias: (up, down, left, right, back, forward, enter) |
+| `SetLed(b, v)`        | set led, b is alias: (up, down, left, right, back, forward), v: 0 off, 1: on |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+# Interrupt mode: 
+#   Return button state by interrupt. A read clear last value to 0.
+#   If no read, the last value change will be kept for two seconds then reset to 0 if no read. 
+
+# Direct mode:
+#   Return button state as is
+
+_m = 0 # 0: interrupt - default, 1: direct mode 
+
+Alias(up=0x0109, down= 0x0208, left=0x0311, right=0x040c, back=0x050D, forward=0x060E, enter=0x07FF)
+
+fn Init() 
+    Mode(0)
+    
+    # initialize leds
+    dwrite(9, 0) # Led up
+    dwrite(8, 0) # Led down
+    dwrite(17, 0) # Led left
+    dwrite(12, 0) # Led right
+    dwrite(13, 0) # Led back
+    dwrite(14, 0) # Led forward
+fend
+
+fn Mode(m)
+    _m = m    
+    
+    if _m = 0
+        # initialize buttons
+        btnen(1, 1, 1) # Btn Up
+        btnen(2, 1, 1) # Btn Down
+        btnen(3, 1, 1) # Btn Left
+        btnen(4, 1, 1) # Btn Right
+        btnen(5, 1, 1) # Btn Back
+        btnen(6, 1, 1) # Btn Forward
+        btnen(7, 1, 1) # Btn Enter
+    else
+        btnen(1, 0, 0) # Btn Up
+        btnen(2, 0, 0) # Btn Down
+        btnen(3, 0, 0) # Btn Left
+        btnen(4, 0, 0) # Btn Right
+        btnen(5, 0, 0) # Btn Back
+        btnen(6, 0, 0) # Btn Forward
+        btnen(7, 0, 0) # Btn Enter
+    end
+fend
+
+fn IsPressed(b)
+    b = b >> 8
+    if (_m = 0) 
+        return btndown(b) = 1
+    else
+        return !dread(b, 1)
+    end
+fend
+
+fn IsReleased(b)
+    b = b >> 8
+    
+    if (_m = 0) 
+        return btnup(b) = 1
+    else 
+        return dread(b, 1)
+    end
+fend
+
+fn SetLed(l, v)
+    l = l & 0xFF
+    
+    if l < 0xFF
+        dwrite(l, v)
+    end    
+fend
+
+fn DVer()
+  return 0.1
+fend
+
+Init()
+
+##### User Code Starts Here #####
+
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+
+while 1
+    # Blink led up if button up pressed
+    if IsPressed(up) 
+       SetLed(up, 1) 
+    else 
+        SetLed(up, 0) 
+    end
+    
+    # Blink led down if button down pressed
+    if IsPressed(down)
+       SetLed(down, 1)
+    else 
+        SetLed(down, 0)
+    end  
+    
+    if IsPressed(left)
+       SetLed(left, 1)
+    else 
+        SetLed(left, 0)
+    end 
+    
+    if IsPressed(right)
+       SetLed(right, 1)
+    else 
+        SetLed(right, 0)
+    end 
+    
+    if IsPressed(back)
+       SetLed(back, 1)
+    else 
+        SetLed(back, 0)
+    end
+    
+    if IsPressed(forward)
+       SetLed(forward, 1)
+    else 
+        SetLed(forward, 0)
+    end
+    
+     # Blink stat led down if button enter pressed
+    if IsPressed(enter)
+        statled(1, 0, 0)        
+    else 
+       statled(0, 1, 0)
+    end
+ 
+    wait(100)
+wend
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number      | Price  |
+| ----------- | ---------------- | ------ |
+| Button L7   | GDL-HIBUTTONL7-B | $00.00 |

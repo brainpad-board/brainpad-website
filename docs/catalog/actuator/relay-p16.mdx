@@ -1,0 +1,227 @@
+---
+pagination_next: null
+pagination_prev: null
+hide_table_of_contents: true
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+# Relay P16
+
+<div style={{ textAlign: "center" }}>
+  <table>
+    <td>
+      <Zoom>
+        <img alt="Front" src="/img/catalog/relay-p16-front.png" />
+      </Zoom>
+    </td>
+    <td>
+      <Zoom>
+        <img alt="Back" src="/img/catalog/relay-p16-back.png" />
+      </Zoom>
+    </td>
+  </table>
+  <p>**16 Port Relay Controller**</p>
+  ---
+</div>
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Drivers', value: 'drivers'},
+    {label: 'Samples', value: 'samples'},
+    {label: 'Projects', value: 'projects'},
+  ]}>
+
+<TabItem value="overview">
+16 Port Relay Controller
+
+<table><td width='50%'>
+**Key features**
+
+• 16 Screw terminal ports <br/>
+• 90x187mm Overall Dimension<br/>
+
+</td><td width='50%'>
+**Resources**
+
+📄[Schematics](pathname:///sch/gdl-acrelayp16-a.pdf)<br/>
+🔩[3D STEP file](pathname:///3d/gdl-acrelayp16-a.step)<br/>
+📚[3D Viewer](/)<br/>
+▶YouTube Videos<br/>
+⁃ [The Making of John Due](https://www.youtube.com/watch?v=D4073veneWI)<br/>
+⁃ [Another video](https://www.youtube.com/watch?v=D4073veneWI)<br/>
+
+</td></table>
+
+</TabItem>
+
+<TabItem value="drivers">
+| Function | Description          | Use |
+| -------- | -------------------- | --- |
+| `Set(index, value)`       | index: start from 1 to 16. Value 1: On, 0: Off     |
+| `DVer()`       | This driver version.        |
+
+<details>
+  <summary>The Code!</summary>
+
+Modules ship with this script preloaded. Use [Console](../../console) to reload or modify the drivers. Additionally, some languages, such as [Python](../../language/python), include `DUELink.Engine.Record()` for recording scripts directly from the host.
+
+```py
+##### Driver Code Starts Here ###
+fn Send(r, v) 
+    if v = 1
+        dwrite(r, 0)
+    else
+        dread(r, 0)
+    end
+fend
+
+fn Set(r, v)
+    if (r = 1)
+        Send(11, v)
+    end
+    
+    if (r = 2)
+        Send(7, v)
+    end
+    
+    if (r = 3)
+        Send(8, v)
+    end
+    
+    if (r = 4)
+        Send(9, v)
+    end
+    
+    if (r = 5)
+        Send(6, v)
+    end
+    
+    if (r = 6)
+        Send(5, v)
+    end
+    
+    if (r = 7)
+        Send(4, v)
+    end
+    
+    if (r = 8)
+        Send(3, v)
+    end
+    
+    if (r = 9)
+        Send(2, v)
+    end
+    
+    if (r = 10)
+        Send(1, v)
+    end
+    
+    if (r = 11)
+        Send(12, v)
+    end
+    
+    if (r = 12)
+        Send(13, v)
+    end
+    
+    if (r = 13)
+        Send(15, v)
+    end
+    
+    if (r = 14)
+        Send(14, v)
+    end
+    
+    if (r = 15)
+        Send(16, v)
+    end
+    
+    if (r = 16)
+        Send(10, v)
+    end
+fend
+
+fn DVer()
+    return 0.1
+fend
+##### User Code Starts Here #####
+```
+
+</details>
+</TabItem>
+
+<TabItem value="samples">
+
+<Tabs
+  values={[
+    {label: 'Script', value: 'script'},
+    {label: 'Python', value: 'py'},
+    {label: 'JavaScript', value: 'js'},
+
+]}>
+
+<TabItem value="script">
+ Use [Console](../../console) to modify the default driver by adding this sample.
+
+```py
+# Append this code at the bottom of the script, right after the driver.
+# You MUST keep the driver code!!
+while 1
+  Set(2, 1) # turn on relay 2
+  wait(1000)
+  Set(2, 0) # turn off relay 2
+  wait(2000)
+wend
+```
+
+</TabItem>
+
+<TabItem value="py">
+
+```py
+from DUELink.DUELinkController import DUELinkController
+import time
+availablePort = DUELinkController.GetConnectionPort()
+duelink = DUELinkController(availablePort)
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+//code
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="projects">Coming soon!</TabItem>
+
+</Tabs>
+
+---
+
+<p
+  style={{
+    backgroundColor: "lightcyan",
+    color: "black",
+    padding: "0px 0px 0px 30px",
+  }}
+>
+  ## Ordering Info
+</p>
+
+| Description | Part Number      | Price  |
+| ----------- | ---------------- | ------ |
+| Relay P16   | GDL-ACRELAYP16-A | $00.00 |
