@@ -84,28 +84,48 @@ const config = {
       // Replace with your project's social card
       image: 'img/ghielectronics-social-card.jpg',
       navbar: {
-        title: 'by GHI Electronics',
-        logo: {
-          alt: 'DUELink Logo',
+                logo: {
+          alt: 'BrainPad Logo',
           src: 'img/duelinklogo.png',
 
         },
         items: [
             
           {
-            href: 'https://www.ghielectronics.com/',
+            href: 'https://www.brainpad.com/coding-events/',
             //type: 'docSidebar',
             //idebarId: 'tutorialSidebar',
             position: 'right',
-            label: 'GHI Electronics',
+            label: 'Events',
           },
           {
-            href: 'https://forums.ghielectronics.com/c/duelink/31',
+            href: 'https://www.brainpad.com/impact/',
             //type: 'docSidebar',
             //sidebarId: 'tutorialSidebar',
             position: 'right',
-            label: 'Forums',
+            label: 'Impact',
           },
+          {
+            href: './docs/catalog/intro',
+            //type: 'docSidebar',
+            //sidebarId: 'tutorialSidebar',
+            position: 'right',
+            label: 'Devices',
+          },
+          {
+            href: './docs/start/intro',
+            //type: 'docSidebar',
+            //sidebarId: 'tutorialSidebar',
+            position: 'right',
+            label: 'Start Coding',
+          }, 
+          {
+            href: './docs/about',
+            //type: 'docSidebar',
+            //sidebarId: 'tutorialSidebar',
+            position: 'right',
+            label: 'About',
+          }, 
           
          // {to: '/blog', label: 'Blog', position: 'left'},
           /*{
@@ -174,7 +194,7 @@ const config = {
           
         ],
         */
-        copyright: `Copyright © ${new Date().getFullYear()} GHI Electronics, LLC`,
+        copyright: `Copyright © ${new Date().getFullYear()} BrainPad, LLC`,
       },
       prism: {
         theme: prismThemes.github,
