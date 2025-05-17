@@ -16,6 +16,18 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
+        <div class="videocontainer">
+        <iframe class="responsive-width" 
+        src="https://www.youtube.com/embed/0nTYkD6aCSc" 
+        frameborder="0"
+        allowfullscreen></iframe>
+
+      </div>
+        <p>
+        BrainPad is a STEM coding platform, not a toy, though you can still PLAY.
+        <br/>
+        Understanding CODE is essential to EXCEL in this digitally-transformed-era.
+        </p>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
          <div className={styles.buttons}>
           <Link
@@ -33,8 +45,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`DUELink`}
-      description="Dynamic, Universal, and Extetensible Link.">
+      title={`BrainPad`}
+      description="PLAY|CODE|EXCEL">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

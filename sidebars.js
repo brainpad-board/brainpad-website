@@ -22,10 +22,21 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
-    "intro",
+
     {
       type: "category",
-      label: "Getting Started",
+      label: "Catalog",
+      link: { type: "doc", id: "catalog/intro" },
+      items: [
+        "catalog/arcade-v3",
+        "catalog/brainpower",
+        "catalog/sensor-kit",
+        "catalog/legacy",
+      ],
+    },
+    {
+      type: "category",
+      label: "Start Coding",
       link: { type: "doc", id: "start/intro" },
       items: [
         "start/blocks",
@@ -34,33 +45,9 @@ const sidebars = {
         "start/duelink",
       ],
     },
-    {
-      type: "category",
-      label: "Product Catalog",
-      link: { type: "doc", id: "catalog/intro" },
-      items: [
-        "catalog/arcade-v3",
-        "catalog/brain-power",
-        "catalog/sensor-kit",
-        "catalog/legacy",
-      ],
-    },
-    {
-      type: "category",
-      label: "Support",
-      link: { type: "doc", id: "support" },
-      items: [
-
-      ],
-    },
-    {
-      type: "category",
-      label: "Legal",
-      link: { type: "doc", id: "legal" },
-      items: [
-
-      ],
-    },
+    
+    "support",
+    "legal",
   ],
 };
 

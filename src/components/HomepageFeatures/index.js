@@ -4,29 +4,29 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Dynamic',
+    title: 'Empowers Educators',
     Svg: require('@site/static/img/dynamic.svg').default,
     description: (
       <>
-        The world's first & only true smart modules. Chainable and linkable.
+        Works from professional teachers to homeschooling parents.
       </>
     ),
   },
   {
-    title: 'Universal',
+    title: 'Excites Learners',
     Svg: require('@site/static/img/universal.svg').default,
     description: (
       <>
-        Works with various devices including desktops, laptops, phones, and Raspberry Pi.  
+        Unlike a PC, learners eyes light up the moment they see a circuit coming to life.  
       </>
     ),
   },
   {
-    title: 'Extensible',
+    title: 'Impacts Communities',
     Svg: require('@site/static/img/extensible.svg').default,
     description: (
       <>
-        Supports multiple languages like Python, JavaScript & .NET, 
+        Inclusive of all backgrounds and age groups to build  better future. 
       </>
     ),
   },

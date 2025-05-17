@@ -18,7 +18,7 @@
   margin-right: 8px;
   border-radius: 0;
   color: #000;
-  background-color:lightcyan;
+  background-color:rgb(238, 226, 194);
 }
 
 .unique-tabs .tabs__item--active {
@@ -64,10 +64,10 @@ img {
 
 
 :root {
-  --ifm-color-primary: #0977aa;
-  --ifm-color-primary-dark: #0c92d0;
-  --ifm-color-primary-darker: #0c88c1;
-  --ifm-color-primary-darkest: #065174;
+  --ifm-color-primary: #d4651b;
+  --ifm-color-primary-dark: #949209;
+  --ifm-color-primary-darker: #6d6807;
+  --ifm-color-primary-darkest: #332b04;
   --ifm-color-primary-light: #ffaa55;
   --ifm-color-primary-lighter: #fbba7a;
   --ifm-color-primary-lightest: #fbcfa4;
@@ -77,10 +77,10 @@ img {
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #0977aa;
-  --ifm-color-primary-dark: #0c8ecb;
-  --ifm-color-primary-darker: #0c90cd;
-  --ifm-color-primary-darkest: #064765;
+  --ifm-color-primary: #e0ad14;
+  --ifm-color-primary-dark: #7e690c;
+  --ifm-color-primary-darker: #6d5e09;
+  --ifm-color-primary-darkest: #3a2805;
   --ifm-color-primary-light: #ffaa55;
   --ifm-color-primary-lighter: #ffaa55;
   --ifm-color-primary-lightest: #ffaa55;

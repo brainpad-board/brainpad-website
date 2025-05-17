@@ -14,11 +14,11 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'DUELink',
-  tagline: 'Dynamic Universal Extensible Link',
+  title: 'BrainPad',
+  tagline: 'PLAY|CODE|EXCEL',
   favicon: 'img/favicon.ico',
 
-  url: `https://www.duelink.com/`,
+  url: `https://www.brainpad.com/`,
   baseUrl: `/`,
 
   // GitHub pages deployment config.
@@ -47,7 +47,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            `https://github.com/ghi-electronics/duelink-website/tree/dev`,
+            `https://github.com/brainpad-board/brainpad-website/tree/dev`,
         },
         /*blog: {
           showReadingTime: true,
@@ -82,47 +82,37 @@ const config = {
       },
 
       // Replace with your project's social card
-      image: 'img/ghielectronics-social-card.jpg',
+      image: 'img/brainpad-social-card.jpg',
       navbar: {
-                logo: {
+        title: 'by GHI Electronics',
+        logo: {
           alt: 'BrainPad Logo',
-          src: 'img/duelinklogo.png',
+          src: 'img/brainpad-logo.png',
 
         },
         items: [
-            
           {
-            href: 'https://www.brainpad.com/coding-events/',
-            //type: 'docSidebar',
-            //idebarId: 'tutorialSidebar',
+            href: '/services',
             position: 'right',
-            label: 'Events',
+            label: 'Services',
           },
           {
-            href: 'https://www.brainpad.com/impact/',
-            //type: 'docSidebar',
-            //sidebarId: 'tutorialSidebar',
+            href: '/docs/catalog/intro',
+            position: 'right',
+            label: 'Catalog',
+          },
+          {
+            href: '/impact',
             position: 'right',
             label: 'Impact',
           },
           {
-            href: './docs/catalog/intro',
-            //type: 'docSidebar',
-            //sidebarId: 'tutorialSidebar',
+            href: '/partners',
             position: 'right',
-            label: 'Devices',
+            label: 'Partners',
           },
           {
-            href: './docs/start/intro',
-            //type: 'docSidebar',
-            //sidebarId: 'tutorialSidebar',
-            position: 'right',
-            label: 'Start Coding',
-          }, 
-          {
-            href: './docs/about',
-            //type: 'docSidebar',
-            //sidebarId: 'tutorialSidebar',
+            href: '/about',
             position: 'right',
             label: 'About',
           }, 
@@ -194,7 +184,7 @@ const config = {
           
         ],
         */
-        copyright: `Copyright © ${new Date().getFullYear()} BrainPad, LLC`,
+        copyright: `Copyright © ${new Date().getFullYear()} GHI Electronics, LLC`,
       },
       prism: {
         theme: prismThemes.github,
