@@ -28,7 +28,7 @@ const sidebars = {
       label: "Catalog",
       link: { type: "doc", id: "catalog/intro" },
       items: [
-        "catalog/arcade-v3",
+        "catalog/arcade",
         "catalog/brainpower",
         "catalog/sensor-kit",
         "catalog/legacy",
@@ -48,6 +48,7 @@ const sidebars = {
     
     "support",
     "legal",
+    "safety",
   ],
 };
 

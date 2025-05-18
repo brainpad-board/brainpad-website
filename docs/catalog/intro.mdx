@@ -4,4 +4,50 @@ pagination_prev: null
 hide_table_of_contents: true
 ---
 
-# Product Catalog Intro
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
+
+# Product Catalog
+
+These devices are designed to be simple and affordable.
+
+<div style={{display: 'block',  justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+
+<table>
+<td>
+    <Zoom>
+    <img alt="arcade v3" src="/img/catalog/arcade-v3-front.jpg" />
+    </Zoom>
+    <Button
+    style={{ margin: "10px" }}
+    label="Arcade V3"
+    link="arcade-v3"
+    />
+</td>
+<td>
+    <Zoom>
+    <img alt="brainpower" src="/img/catalog/brainpower-front.png" />
+    </Zoom>
+    <Button
+    style={{ margin: "10px" }}
+    label="BrainPower"
+    link="brainpower"
+    />
+</td>
+<td>
+    <Zoom>
+    <img alt="sensor kit" src="/img/catalog/arcade-v3-front.jpg" />
+    </Zoom>
+    <Button
+    style={{ margin: "10px" }}
+    label="Sensor Kit"
+    link="sensor-kit"
+    />
+</td>
+</table>
+</div>
