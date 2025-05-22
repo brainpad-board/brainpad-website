@@ -15,7 +15,6 @@ function HomepageHeader() {
    
     
       <div className="container">
-      <p className="hero__subtitle">{siteConfig.tagline}</p>
         <p>
         BrainPad is a STEM coding platform, not a toy, though you can still <strong>PLAY</strong>.
         <br/>
