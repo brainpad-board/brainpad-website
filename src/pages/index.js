@@ -55,6 +55,7 @@ export default function Home() {
             BrainPad has an Impact!
           </Link>
         </div>
+        <p> </p>
     </Layout>
   );
 }
