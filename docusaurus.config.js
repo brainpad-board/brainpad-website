@@ -46,8 +46,8 @@ const config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            `https://github.com/brainpad-board/brainpad-website/tree/dev`,
+          //editUrl:
+            //`https://github.com/brainpad-board/brainpad-website/tree/dev`,
         },
         /*blog: {
           showReadingTime: true,
