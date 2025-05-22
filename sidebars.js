@@ -30,6 +30,7 @@ const sidebars = {
       items: [
         "catalog/arcade",
         "catalog/brainpower",
+        "catalog/pulse",
         "catalog/legacy",
       ],
     },
@@ -38,10 +39,11 @@ const sidebars = {
       label: "Resources",
       link: { type: "doc", id: "resources/intro" },
       items: [
-        "resources/blocks",
-        "resources/python",
-        "resources/javascript",
-        "resources/duelink",
+        "resources/makecode-arcade",
+        //"resources/python",
+        //"resources/javascript",
+        //"resources/duelink",
+        "resources/makecode",
       ],
     },
     
