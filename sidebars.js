@@ -29,8 +29,20 @@ const sidebars = {
       link: { type: "doc", id: "catalog/intro" },
       items: [
         "catalog/arcade",
-        "catalog/brainpower",
         "catalog/pulse",
+        {
+          type: "category",
+          label: "Pulse Kits",
+          link: { type: "doc", id: "catalog/pulse-kits" },
+          items: [
+            "catalog/brainclip",
+            "catalog/brainsense",
+            "catalog/brainbot",
+            "catalog/braingamer",
+            "catalog/brainpower",
+            "catalog/braintronics",
+          ],
+        },
         "catalog/legacy",
       ],
     },
