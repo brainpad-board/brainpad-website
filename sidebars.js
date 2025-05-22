@@ -30,19 +30,18 @@ const sidebars = {
       items: [
         "catalog/arcade",
         "catalog/brainpower",
-        "catalog/sensor-kit",
         "catalog/legacy",
       ],
     },
     {
       type: "category",
-      label: "Start Coding",
-      link: { type: "doc", id: "start/intro" },
+      label: "Resources",
+      link: { type: "doc", id: "resources/intro" },
       items: [
-        "start/blocks",
-        "start/python",
-        "start/javascript",
-        "start/duelink",
+        "resources/blocks",
+        "resources/python",
+        "resources/javascript",
+        "resources/duelink",
       ],
     },
     

@@ -92,14 +92,9 @@ const config = {
         },
         items: [
           {
-            href: '/services',
+            href: '/events',
             position: 'right',
-            label: 'Services',
-          },
-          {
-            href: '/docs/catalog/intro',
-            position: 'right',
-            label: 'Catalog',
+            label: 'Events',
           },
           {
             href: '/impact',
@@ -107,9 +102,14 @@ const config = {
             label: 'Impact',
           },
           {
-            href: '/partners',
+            href: '/docs/catalog/intro',
             position: 'right',
-            label: 'Partners',
+            label: 'Catalog',
+          },
+          {
+            href: '/docs/resources/intro',
+            position: 'right',
+            label: 'Resources',
           },
           {
             href: '/about',

@@ -12,28 +12,21 @@ function HomepageHeader() {
   
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
+   
+    
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <div class="videocontainer">
-        <iframe class="responsive-width" 
-        src="https://www.youtube.com/embed/0nTYkD6aCSc" 
-        frameborder="0"
-        allowfullscreen></iframe>
-
-      </div>
+      <p className="hero__subtitle">{siteConfig.tagline}</p>
         <p>
-        BrainPad is a STEM coding platform, not a toy, though you can still PLAY.
+        BrainPad is a STEM coding platform, not a toy, though you can still <strong>PLAY</strong>.
         <br/>
-        Understanding CODE is essential to EXCEL in this digitally-transformed-era.
+        Understanding <strong>CODE</strong> is essential to <strong>EXCEL</strong> in this digitally-transformed-era.
         </p>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        
          <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/">
-            In progress... come back soon!
+            to="events">
+            BrainPad is Everywhere!
           </Link>
         </div>
       </div>
@@ -47,10 +40,22 @@ export default function Home() {
     <Layout
       title={`BrainPad`}
       description="PLAY|CODE|EXCEL">
+      <div style={{display: 'block',  justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+        <img src="/img/brainpad-logo.png" alt="logo" />
+      </div>
       <HomepageHeader />
+      
       <main>
         <HomepageFeatures />
       </main>
+      <div className={styles.buttons}>
+          <Link
+            className="button button--primary button--lg"
+            
+            to="impact">
+            BrainPad has an Impact!
+          </Link>
+        </div>
     </Layout>
   );
 }
