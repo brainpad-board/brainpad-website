@@ -21,63 +21,110 @@ import "react-medium-image-zoom/dist/styles.css";
   <table>
     <td>
       <Zoom>
-        <img alt="Back" src="/img/catalog/arcade-v2-back.jpg" />
+        <img alt="Package" src="/img/catalog/bg_1.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Size" src="/img/catalog/arcade-v2-clip.jpg" />
+        <img alt="Front" src="/img/catalog/bg_4.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Front" src="/img/catalog/arcade-v2-front45.jpg" />
+        <img alt="Back" src="/img/catalog/bg_2.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Back" src="/img/catalog/arcade-v2-packaging.png" />
+        <img alt="Front before assembly" src="/img/catalog/bg_3.png" />
       </Zoom>
     </td>
   </table>
-  <p>**BrainPad Arcade V2 Microcomputer**</p>
+  <p>**BrainGamer**</p>
 </div>
-
-
 
 ---
 
-“Don’t just play games, make them” is the mentality behind BrainPad Arcade. With the full support of <strong>Microsoft MakeCode Arcade</strong>, users can build hundreds of arcade-style games. Go beyond games to use sensors and learn about circuits, or even build robots!
+<div style={{ textAlign: 'center' }}>
+  <img
+    src="/img/catalog/bg_5.png"
+    alt="BrainGamer kit contents"
+    style={{ maxWidth: '100%', height: 'auto' }}
+  />
+</div>
+
+---
+
+
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Projects', value: 'projects'},
+    {label: 'Getting Started', value: 'getting_started'},
+  ]}>
+
+<TabItem value="overview">
+We believe the best games are the ones you create yourself. BrainGamer also features a large rechargeable battery, allowing it to run wire-free for hours.
+
 <table><td width='50%'>
 **Key features**
 
-• Microsoft MakeCode Arcade Ready.<br/>
-• 1.8″ 160×120 Color Display.<br/>
-• Jacdac Connector.<br/>
-• DUELink Connector.<br/>
-• Alligator-Clip Pads to Connect Circuits.<br/>
-• Buzzer Speaker.<br/>
-• 8x User Buttons.<br/>
-• Includes USB Cable.<br/>
-• Includes Carrying Case.<br/>
-</td><td width='50%'>
-**Resources**
+- Buzzer for generating sounds
+- Vibrator for haptic feedback
+- Rechargeable battery that runs all day
+- Analog rocker for X and Y movements
+- 4x buttons
 
-📄[Schematics](pathname:///sch/gdl-acfan-b.pdf)<br/>
-🔩[3D STEP file](pathname:///3d/gdl-acfan-b.step)<br/>
+</td><td width='50%'>
+**Kit Contents**
+
+- Base circuit
+- Acrylic handles
+- Screws and nuts
+- Screwdriver
+- Rechargeable battery<br/>
+
+✱ Requires one of the BrainPad Microcomputers, NOT INCLUDED!
+
+
 </td></table>
-<div class="videocontainer">
-    <iframe class="responsive-width" 
-        src="https://www.youtube.com/embed/0nTYkD6aCSc" 
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
+</TabItem>
+
+<TabItem value="projects">
+coming soon
+</TabItem>
+
+<TabItem value="getting_started">
+**Easy Assembly, Step-by-Step**
+
+Ready to set up your new BrainGamer? Click below for clear, detailed instructions to help you get started quickly and easily.
+<Button
+  style={{ margin: "10px" }}
+  label="Assembly Instructions"
+  link="braingamer-instructions"
+/>
+
+<div style={{ textAlign: '' }}>
+  <img
+    src="/img/makecode-ebook.png"
+    alt="book"
+    style={{ maxWidth: '100%', height: 'auto' }}
+  />
 </div>
 
----
+If you're new, start by reading the first four chapters of the book: Introduction, MakeCode, Getting Started, and Block Basics. These sections will help you understand the basics of coding and using the Pulse.
+<div style={{ textAlign: '' }}>
+  <Button
+    style={{ margin: '10px' }}
+    label="MakeCode for BrainPad Pulse eBook"
+    link="/ebook/MakeCode-for-BrainPad.pdf"
+  />
+</div>
+
+</TabItem>
+</Tabs>
 
 ---
-
 <p
   style={{
     backgroundColor: "orange",
@@ -90,4 +137,4 @@ import "react-medium-image-zoom/dist/styles.css";
 
 | Description | Part Number | Price  | Buy
 | ----------- | ----------- | ------ | ---
-| BrainPad Arcade Microcomputer   | BPC-ARCADE-AR2B | $39.95 | <Button  style={{ margin: "10px" }}  label="Buy on Amazon"  link="https://www.amazon.com/dp/B0CL4ZCN53"/>
+| BrainGamer Kit	   | BPK-GMR-2	 | $39.95 | <Button  style={{ margin: "10px" }}  label="Buy on Mouser"  link="https://www.mouser.com/ProductDetail/GHI-Electronics/BPK-GMR-2?qs=Rp5uXu7WBW%252BRX5d0drPSsA%3D%3D"/>

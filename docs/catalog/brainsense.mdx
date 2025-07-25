@@ -21,60 +21,118 @@ import "react-medium-image-zoom/dist/styles.css";
   <table>
     <td>
       <Zoom>
-        <img alt="Back" src="/img/catalog/arcade-v2-back.jpg" />
+        <img alt="Package" src="/img/catalog/bs_4.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Size" src="/img/catalog/arcade-v2-clip.jpg" />
+        <img alt="Back" src="/img/catalog/bs_2.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Front" src="/img/catalog/arcade-v2-front45.jpg" />
+        <img alt="Side" src="/img/catalog/bs_3.png" />
       </Zoom>
     </td>
     <td>
       <Zoom>
-        <img alt="Back" src="/img/catalog/arcade-v2-packaging.png" />
+        <img alt="Other side" src="/img/catalog/bs_1.png" />
       </Zoom>
     </td>
   </table>
-  <p>**BrainPad Arcade V2 Microcomputer**</p>
+  <p>**BrainSense**</p>
 </div>
 
+---
+
+![BrainSense kit overview](pathname:///img/catalog/bs_5.jpg)
 
 
 ---
 
-“Don’t just play games, make them” is the mentality behind BrainPad Arcade. With the full support of <strong>Microsoft MakeCode Arcade</strong>, users can build hundreds of arcade-style games. Go beyond games to use sensors and learn about circuits, or even build robots!
+<Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
+  values={[
+    {label: 'Overview', value: 'overview'},
+    {label: 'Projects', value: 'projects'},
+    {label: 'Getting Started', value: 'getting_started'},
+  ]}>
+
+<TabItem value="overview">
+BrainSense kit is an excellent demonstration of how smart homes and connected cities are built. It includes several sensors and actuators to sense and control the surrounding environment.
+
 <table><td width='50%'>
 **Key features**
 
-• Microsoft MakeCode Arcade Ready.<br/>
-• 1.8″ 160×120 Color Display.<br/>
-• Jacdac Connector.<br/>
-• DUELink Connector.<br/>
-• Alligator-Clip Pads to Connect Circuits.<br/>
-• Buzzer Speaker.<br/>
-• 8x User Buttons.<br/>
-• Includes USB Cable.<br/>
-• Includes Carrying Case.<br/>
-</td><td width='50%'>
-**Resources**
+- Environment Sensors
+- Motors
+- Sound Alarm
+- Use included “house” or make your own
+- Assembled house fits inside case
 
-📄[Schematics](pathname:///sch/gdl-acfan-b.pdf)<br/>
-🔩[3D STEP file](pathname:///3d/gdl-acfan-b.step)<br/>
+</td><td width='50%'>
+**Kit Contents**
+
+- Brainpad Pulse
+- Laser Cut Wood House
+- Controller Board
+- Alarm Speaker
+- RGB LEDs
+- Flame Sensor
+- DC Fan Motor
+- Steam Sensor
+- Motion Sensor
+- Light Sensor
+- Temperature & Humidity Sensor
+- Soil Moisture Sensor
+- Battery Holder
+- USB Cable
+- 10x Sensor connecting wires
+- Screws, Nuts, Screwdriver
+- Door and Servo Motor
+- Reusable storage case
 </td></table>
 <div class="videocontainer">
     <iframe class="responsive-width" 
-        src="https://www.youtube.com/embed/0nTYkD6aCSc" 
+        src="https://www.youtube.com/embed/TOW_ZC0y570" 
         frameborder="0"
         allowfullscreen>
     </iframe>
 </div>
 
----
+</TabItem>
+
+<TabItem value="projects">
+coming soon
+</TabItem>
+
+<TabItem value="getting_started">
+
+**Easy Assembly, Step-by-Step**
+
+Ready to set up your new BrainSense? Click below for clear, detailed instructions to help you get started quickly and easily.
+<Button
+  style={{ margin: "10px" }}
+  label="Assembly Instructions"
+  link="brainsense-instructions"
+/>
+<div style={{ textAlign: '' }}>
+  <img
+    src="/img/makecode-ebook.png"
+    alt="book"
+    style={{ maxWidth: '100%', height: 'auto' }}
+  />
+</div>
+
+If you're new, start by reading the first four chapters of the book: Introduction, MakeCode, Getting Started, and Block Basics. These sections will help you understand the basics of coding and using the Pulse.
+<div style={{ textAlign: '' }}>
+  <Button
+    style={{ margin: '10px' }}
+    label="MakeCode for BrainPad Pulse eBook"
+    link="/ebook/MakeCode-for-BrainPad.pdf"
+  />
+</div>
+</TabItem> 
+</Tabs>
 
 ---
 
@@ -90,4 +148,4 @@ import "react-medium-image-zoom/dist/styles.css";
 
 | Description | Part Number | Price  | Buy
 | ----------- | ----------- | ------ | ---
-| BrainPad Arcade Microcomputer   | BPC-ARCADE-AR2B | $39.95 | <Button  style={{ margin: "10px" }}  label="Buy on Amazon"  link="https://www.amazon.com/dp/B0CL4ZCN53"/>
+| BrainSense Kit + Pulse	   | BPK-SENSE-1	 | $69.95 | <Button  style={{ margin: "10px" }}  label="Buy on Amazon"  link="https://www.amazon.com/dp/B0CNQ6SJK2?ref=myi_title_dp&th=1"/>

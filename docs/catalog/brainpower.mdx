@@ -46,10 +46,20 @@ import "react-medium-image-zoom/dist/styles.css";
 
 ---
 
+<div style={{ textAlign: 'center' }}>
+  <img
+    src="/img/catalog/bp_1.png"
+    alt="BrainPower kit contents"
+    style={{ maxWidth: '100%', height: 'auto' }}
+  />
+</div>
+
+---
 <Tabs className="unique-tabs" groupid = "catalog" queryString="show" defaultValue="overview"
   values={[
     {label: 'Overview', value: 'overview'},
     {label: 'Projects', value: 'projects'},
+    {label: 'Getting Started', value: 'getting_started'},
   ]}>
 
 <TabItem value="overview">
@@ -58,27 +68,38 @@ Take your Arcade on-the-go with this rechargeable battery option. It includes a 
 <table><td width='50%'>
 **Key features**
 
-• Rechargeable battery.<br/>
-• Vibrator motor for haptic feedback.<br/>
-• Wearable!<br/>
+- Rechargeable battery
+- Vibrator motor for haptic feedback
+- Wearable
 
 </td><td width='50%'>
-**Resources**
+**Kit Contents**
 
-📄[Schematics](pathname:///sch/gdl-acfan-b.pdf)<br/>
-🔩[3D STEP file](pathname:///3d/gdl-acfan-b.step)<br/>
+- BrainPower base board with rechargeable battery
+- Wrist strap
+- Screwdriver
+- Screws
+- Reusable case<br/>
 
-
+✱ Requires one of the BrainPad Microcomputers, NOT INCLUDED!
 </td></table>
 </TabItem>
 
-<TabItem value="projects">Coming soon!</TabItem>
+<TabItem value="projects">
+Coming soon!
+</TabItem>
 
+<TabItem value="getting_started">
+**Easy Assembly, Step-by-Step**
+
+Ready to set up your new BrainPower? Click below for clear, detailed instructions to help you get started quickly and easily.
+<Button
+  style={{ margin: "10px" }}
+  label="Assembly Instructions"
+  link="brainpower-instructions"
+/>
+</TabItem>
 </Tabs>
-
-
-
-
 ---
 
 <p
@@ -91,7 +112,7 @@ Take your Arcade on-the-go with this rechargeable battery option. It includes a 
   ## Ordering Info
 </p>
 
-| Description | Part Number | Price  |
-| ----------- | ----------- | ------ |
-| BrainPower Arcade power adapter   | BPK-PWR-2 | $39.95 |
+| Description | Part Number | Price  | Buy
+| ----------- | ----------- | ------ | ---
+| BrainPower Arcade power adapter   | BPK-PWR-2 | $39.95 | <Button  style={{ margin: "10px" }}  label="Buy on Mouser"  link="https://www.mouser.com/ProductDetail/GHI-Electronics/BPK-POWER-2?qs=Rp5uXu7WBW%2FARGam2RklTg%3D%3D"/>
 
