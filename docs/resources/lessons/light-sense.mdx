@@ -2,10 +2,9 @@
 
 In this lesson, students will learn about Light sensor and how to deal with is using BrainPad Arcade
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <img src="/img/resources/makecode_arcade/sl_1.jpg" alt="BrainPad" width="500" />
-  <img src="/img/resources/makecode_arcade/sl_2.png" alt="Accessories" width="500" />
-</div>
+![Light Sense](pathname:///img/res/arcade/sl_1.jpg)
+![Light Sense](pathname:///img/res/arcade/sl_2.png)
+
 
 ## Target Audience
 
@@ -15,7 +14,7 @@ Anyone 13+ will benefit from this series. Younger audiences can still follow alo
 
 You will need any computer with a modern internet connection. Windows, Mac, and even Chromebook will work!
 
-Having a BrainPad Arcade will help you understand the Edge connectors, take the game you made, and load it on a device you are holding. You will need some sensors from the BrainClip kit, And you need to finish the previous project from [here](/docs/resources/lessons/edge-connectors).
+Having a BrainPad Arcade will help you understand the Edge connectors, take the game you made, and load it on a device you are holding. You will need some sensors from the BrainClip kit, And you need to finish the previous project from [here](/docs/resources/lessons/edge-pads).
 
 ## Our Smart City!
 
@@ -23,11 +22,11 @@ We will build a virtual city, that wakes up when sunrise, and sleeps when sunset
 
 First, let’s draw the morning scene for the city.
 
-<img src="/img/resources/makecode_arcade/sl_3.png" alt="Code" width="500" />
+![Light Sense](pathname:///img/res/arcade/sl_3.png)
 
 Next, we will draw the night scene for the city.
 
-<img src="/img/resources/makecode_arcade/sl_4.png" alt="Code" width="500" />
+![Light Sense](pathname:///img/res/arcade/sl_4.png)
 
 Before programming the sensor, we need to learn more about it, and how it works?
 
@@ -37,19 +36,16 @@ Like a smart home night light, when it is dark at night the light will turn on, 
 
 To make it more clear, let’s add a sprite that tells us how much the value that sensor is reading is when there is light and when not.
 
-<img src="/img/resources/makecode_arcade/sl_5.png" alt="Code" width="500" />
+![Light Sense](pathname:///img/res/arcade/sl_5.png)
 
 Connect “GND” from the sensor to “GND” at the Arcade, and “VCC” from the sensor to the “3V” at the Arcade.
 Finally, choose a pin to control it, we connect “OUT” from the sensor to PIN0 at the Arcade
 
-<img src="/img/resources/makecode_arcade/sl_6.png" alt="BrainPad connected" width="500" />
+![Light Sense](pathname:///img/res/arcade/sl_6.png)
+
 
 Now, we will program the sensor, using “analog read” If the sensor reads a low value (under 400 depending on your light while building the project) that means no need for light, which means the city has a nice morning. If there is no light detected by the sensor will give us a high value which means the city now is sleeping.
 
-<img src="/img/resources/makecode_arcade/sl_7.png" alt="Code" width="500" />
-<img src="/img/resources/makecode_arcade/sl_8.gif" alt="All connected" width="500" />
-
-## What next?
-
-Try to connect the sensor with one of the games, and make a smart LED game.
+![Light Sense](pathname:///img/res/arcade/sl_7.png)
+![Light Sense](pathname:///img/res/arcade/sl_8.gif)
 
