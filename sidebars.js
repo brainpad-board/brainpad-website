@@ -58,6 +58,12 @@ const sidebars = {
           items: [
             "resources/lessons/2d-adventure",
             "resources/lessons/space-shooter",
+            "resources/lessons/edge-pads",
+            "resources/lessons/analog-vs-digital",
+            "resources/lessons/led-ring",
+            "resources/lessons/motion-sense",
+            "resources/lessons/light-sense",
+            "resources/lessons/sound-sense",
           ],
         },
         //"resources/python",

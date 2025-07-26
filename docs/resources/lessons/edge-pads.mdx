@@ -1,0 +1,73 @@
+# Edge Pads
+
+In this lesson, students will learn about the Edge Pads on the BrainPad Arcade and how they can use them to connect sensors and circuits.
+
+![Edge Pads](pathname:///img/res/arcade/edge-pads.jpg)
+
+## Target Audience
+
+Anyone 13+ will benefit from this series. Younger audiences can still follow along when paired with an adult. An example can be a pops/grandchild STEM weekend event!
+
+## Setup
+
+You will need any computer with a modern internet connection. Windows, Mac, and even Chromebook will work!
+
+And you will need an RGB LED module and alligator clips with BrainPad Arcade.
+
+## Adding the Extension
+
+First, we need to add the `edge-connector` extension to our project. Start by clicking on `Extension`.
+
+![Edge Pads](pathname:///img/res/arcade/ec_2.png)
+
+Now locate and and click on `edge-connector`.
+
+![Edge Pads](pathname:///img/res/arcade/ec_3.png)
+
+You now have `Pins` blocks under `Advanced` section.
+
+![Edge Pads](pathname:///img/res/arcade/ec_4.png)
+
+From these "Pins", you can program and control the "Edge Pads".
+
+To know the PIN you need, flip the Arcade to the back, and you will find the pin numbers.
+
+![BrainPad](pathname:///img/res/arcade/ec_5.jpg)
+
+---
+
+## Light it Up!
+
+Let us connect/wire the RGB LED to the Arcade. First, We will connect the GND from the Arcade to the GND at the RGB LED.
+
+![BrainPad connected](pathname:///img/res/arcade/ec_7.png)
+
+Then, we will connect the first color “Red” using an alligator clip to PIN0
+![BrainPad connected](pathname:///img/res/arcade/ec_8.png)
+
+Open MakeCode Arcade, and start a new project
+
+
+Now, go to the PINs section, drag `digital write pin (P0)` and set it to `high`. This code tells the Arcade to turn the pin on, which means the Red color will turn on.
+
+![Makecode arcade pins](pathname:///img/res/arcade/ec_9.png)
+
+Download it to your Arcade, and try it
+
+![light](pathname:///img/res/arcade/ec_10.jpg)
+
+Now, we can control the other colors, let's try adding Green color!
+
+All you need, to connect Green pin to PIN1 in Arcade.
+
+![BrainPad connected](pathname:///img/res/arcade/ec_11.png)
+
+Add the same code to activate the PIN1.
+
+![Makecode arcade code](pathname:///img/res/arcade/ec_12.png)
+
+Mixing Red and Green, will give us Yellow!
+
+![Green light](pathname:///img/res/arcade/ec_13.jpg)
+
+We can turn on the Blue color, and do some coloring magic! mixing the colors to have a new color.

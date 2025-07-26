@@ -2,17 +2,7 @@
 
 In this lesson, students will learn about digital and analog values and differences.
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div></div>
-    <img src="/img/resources/makecode_arcade/ad_11.png" alt="Analog" width="500" />
-  </div>
-
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div></div>
-    <img src="/img/resources/makecode_arcade/ad_12.png" alt="Digital" width="500" />
-  </div>
-</div>
+![Analog vs Digital](pathname:///img/res/arcade/ana-vs-digi.jpg)
 
 ## Target Audience
 
@@ -22,70 +12,42 @@ Anyone 13+ will benefit from this series. Younger audiences can still follow alo
 
 You will need any computer with a modern internet connection. Windows, Mac, and even Chromebook will work!
 
-Having a BrainPad Arcade will help you understand the Edge connectors, take the game you made, and load it on a device you are holding.
+And you will need an RGB LED and alligator clips with BRainPad Arcade.
 
-And you will need an RGB LED and alligator clips.
-
-And you need to finish the previous project from [here](/docs/resources/lessons/edge-connectors).
+And you need to finish the previous [Edge Pads](/docs/resources/lessons/edge-pads) project.
 
 ## Analog vs Digital PINs
 
-In the previous project, we connected an RGB LED and controlled it using the “digital write pin” command, and we noticed there were only two values: HIGH and LOW
+In the previous project, we connected an RGB LED and controlled it using the `digital write pin` command, and we noticed there were only two values: `HIGH` and `LOW`. In this project, we will learn more about `analog write` and the differences between analog and digital.
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <img src="/img/resources/makecode_arcade/ad_3.png" alt="BrainPad connected" width="250" />
-  <img src="/img/resources/makecode_arcade/ad_4.jpg" alt="Green light" width="250" />
-  <img src="/img/resources/makecode_arcade/ad_5.png" alt="Code" width="350" />
-</div>
+After opening a new project, go to `Pins` and drag `analog write pin` and you will notice that we have many values this time instead of `HIGH` and `LOW`.
 
-In this project, we will learn more about “analog write” and the differences between “analog and digital”
+![Analog vs Digital](pathname:///img/res/arcade/ad_6.png)
 
-after opening a new project, go to “Pins” and drag “analog write pin” and you will notice that we have many values not only “HIGH and LOW”
+This value sets the power level on the pin, which means it sets the RGB LED brightness in this situation. The value range from 1023 as max and 0 as min.
 
-<img src="/img/resources/makecode_arcade/ad_6.png" alt="Code" width="500" />
+To try different brightness levels, let’s try to make it 50%, half of 1023.
 
-These values help us to change the RGB LED brightness, as 1023 in “analog” equals HIGH in “digital” so if you want to turn it on you can use 1023 (The maximum brightness)
+![Analog vs Digital](pathname:///img/res/arcade/ad_7.jpg)
 
-To try different brightness, let’s try to make it 50%, half of 1023.
+And here it is at 10%.
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div>1023</div>
-    <img src="/img/resources/makecode_arcade/ad_7.jpg" alt="1023" width="500" />
-  </div>
-  
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div>512</div>
-    <img src="/img/resources/makecode_arcade/ad_8.jpg" alt="512" width="500" />
-  </div>
-</div>
+![Analog vs Digital](pathname:///img/res/arcade/ad_8.jpg)
 
 
-To understand the “analog” values more, you can use a Loop and a variable, so you will set the starting value to 0, and increase it by 1 inside the loop.
+To understand the analog values more, you can use a Loop and a variable, so you will set the starting value to 0, and increase it by 1 inside the loop.
+
+![Analog vs Digital](pathname:///img/res/arcade/ad_9.png)
 
 You will notice how the LED brightness will increase one by one.
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <img src="/img/resources/makecode_arcade/ad_9.png" alt="Code" width="500" />
-  <img src="/img/resources/makecode_arcade/ad_10.gif" alt="Light" width="300" />
-</div>
+![Analog vs Digital](pathname:///img/res/arcade/ad_10.gif)
 
 
-Analog and digital are methods of representing information. Analog signals are continuous and vary smoothly over time, much like a wave. Think of it like a line graph where the values can change at any point along the line. Digital signals, however, are discrete and represented using a series of binary digits (0s and 1s). It’s like using a set of switches that are either on or off to represent information. Computers, for example, use digital signals to process and store data because they can precisely represent information in a structured and efficient manner
+Analog and digital are methods of representing a value. Analog signals are continuous and vary smoothly over time, much like a wave. Think of it like a line graph where the values can change at any point along the line. 
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div>Analog</div>
-    <img src="/img/resources/makecode_arcade/ad_11.png" alt="Analog" width="500" />
-  </div>
+![Analog vs Digital](pathname:///img/res/arcade/ad_11.png)
 
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div>Digital</div>
-    <img src="/img/resources/makecode_arcade/ad_12.png" alt="Digital" width="500" />
-  </div>
-</div>
+Digital signals, however, are discrete and represented using a series of binary digits (0s and 1s). It's like using a set of switches that are either on or off to represent information.
 
-
-## Then?
-
-Try to mix colors using Analog mode, and see how many colors you can come up with!
+![Analog vs Digital](pathname:///img/res/arcade/ad_12.png)
