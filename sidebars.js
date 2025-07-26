@@ -51,15 +51,21 @@ const sidebars = {
       label: "Resources",
       link: { type: "doc", id: "resources/intro" },
       items: [
-        "resources/makecode-arcade",
+        {
+          type: "category",
+          label: "MakeCode Arcade",
+          link: { type: "doc", id: "resources/makecode-arcade" },
+          items: [
+            "resources/lessons/2d-adventure",
+            "resources/lessons/space-shooter",
+          ],
+        },
         //"resources/python",
         //"resources/javascript",
         //"resources/duelink",
         "resources/makecode",
       ],
     },
-    
-    "support",
     "legal",
     "safety",
   ],

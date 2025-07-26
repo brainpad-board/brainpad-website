@@ -25,7 +25,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="events">
-            BrainPad is Everywhere!
+            BrainPad is Eventful
           </Link>
         </div>
       </div>
