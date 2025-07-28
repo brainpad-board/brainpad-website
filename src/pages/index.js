@@ -24,8 +24,8 @@ function HomepageHeader() {
          <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="events">
-            BrainPad is Eventful
+            to="community">
+            BrainPad Community
           </Link>
         </div>
       </div>
