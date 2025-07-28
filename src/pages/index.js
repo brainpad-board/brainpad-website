@@ -18,14 +18,14 @@ function HomepageHeader() {
         <p>
         BrainPad is a STEM coding platform, not a toy, though you can still <strong>PLAY</strong>.
         <br/>
-        Understanding <strong>CODE</strong> is essential to <strong>EXCEL</strong> in this digitally-transformed-era.
+        Understanding <strong>CODE</strong> is essential to <strong>EXCEL</strong> communities in a digitally-transformed-era.
         </p>
         
          <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="events">
-            BrainPad is Everywhere!
+            to="community">
+            BrainPad Community
           </Link>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function Home() {
             className="button button--primary button--lg"
             
             to="impact">
-            BrainPad has an Impact!
+            BrainPad Impact
           </Link>
         </div>
         <p> </p>

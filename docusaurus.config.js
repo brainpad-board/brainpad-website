@@ -92,9 +92,9 @@ const config = {
         },
         items: [
           {
-            href: '/events',
+            href: '/community',
             position: 'right',
-            label: 'Events',
+            label: 'Community',
           },
           {
             href: '/impact',
