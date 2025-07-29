@@ -39,7 +39,6 @@ const sidebars = {
             "catalog/brainsense",
             "catalog/brainbot",
             "catalog/braingamer",
-            "catalog/braintronics",
           ],
         },
         "catalog/legacy",

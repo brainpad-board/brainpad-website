@@ -25,7 +25,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="community">
-            BrainPad Community
+            BrainPad is Everywhere!
           </Link>
         </div>
       </div>

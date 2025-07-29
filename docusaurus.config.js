@@ -116,6 +116,11 @@ const config = {
             position: 'right',
             label: 'About',
           }, 
+          {
+            href: '/buy',
+            position: 'right',
+            label: 'Buy',
+          }, 
           
          // {to: '/blog', label: 'Blog', position: 'left'},
           /*{
