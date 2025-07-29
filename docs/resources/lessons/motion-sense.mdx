@@ -1,0 +1,42 @@
+# Motion Sensing
+
+In this lesson, students will learn about Motion sensor and how to deal with is using BrainPad Arcade
+
+![Motion Sense](pathname:///img/res/arcade/motion-sense.gif)
+
+## Setup
+
+You will need any computer with a modern internet connection. Windows, Mac, and even Chromebook will work!
+
+You will need some sensors from the [BrainClip](../../catalog/brainclip) kit, And you need to finish the [Edge Pads](/docs/resources/lessons/edge-pads) project.
+
+## Virtual Smart Door!
+
+When you go through a mall door, the door will automatically open, like when you enter an elevator.
+
+How do these doors open? Let's create our "Virtual Smart Door", using Motion Sensor and BrainPad Arcade
+
+First, let's draw a door in our Arcade screen, we will use two sprites, Door1 and Door2, and move it when the motion sensor detects a motion! we can use the “Change scale” to make it bigger.
+
+![Motion Sense](pathname:///img/res/arcade/sm_3.png)
+
+Now, we need to connect our Motion sensor to the Arcade.
+
+Connect “GND” from the sensor to “GND” at the Arcade, and “VCC” from the sensor to the “3V” at the Arcade.
+Finally, choose a pin to control it, we connect “OUT” from the sensor to PIN0 at the Arcade
+
+![Motion Sense](pathname:///img/res/arcade/sm_4.png)
+
+Now, we will program the sensor, using “digital read” If the sensor reads a motion will give us “true” to open the door, or “false” to keep the door closed.
+
+![Motion Sense](pathname:///img/res/arcade/sm_5.png)
+
+Motion is not detected.
+
+![Motion Sense](pathname:///img/res/arcade/sm_6.jpg)
+
+Motion is detected.
+
+![Motion Sense](pathname:///img/res/arcade/sm_7.jpg)
+
+

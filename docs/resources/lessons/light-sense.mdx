@@ -1,0 +1,50 @@
+# Light Sensing
+
+In this lesson, students will learn about Light sensor and how to deal with is using BrainPad Arcade
+
+![Light Sense](pathname:///img/res/arcade/light-sensor.png)
+
+
+## Target Audience
+
+Anyone 13+ will benefit from this series. Younger audiences can still follow along when paired with an adult. An example can be a pops/grandchild STEM weekend event!
+
+## Setup
+
+You will need any computer with a modern internet connection. Windows, Mac, and even Chromebook will work!
+
+Having a BrainPad Arcade will help you understand the Edge connectors, take the game you made, and load it on a device you are holding. You will need some sensors from the BrainClip kit, And you need to finish the previous project from [here](/docs/resources/lessons/edge-pads).
+
+## Our Smart City!
+
+We will build a virtual city, that wakes up when sunrise, and sleeps when sunset, using the “Light sensor” to detect the sun lights.
+
+First, let’s draw the morning scene for the city.
+
+![Light Sense](pathname:///img/res/arcade/sl_3.png)
+
+Next, we will draw the night scene for the city.
+
+![Light Sense](pathname:///img/res/arcade/sl_4.png)
+
+Before programming the sensor, we need to learn more about it, and how it works?
+
+The value we take from the sensor, is how much light we need, when the value is high this means we need more light, which means it is night, and when it is low value, means we need less light, so it is morning.
+
+Like a smart home night light, when it is dark at night the light will turn on, and in the morning it will turn off.
+
+To make it more clear, let’s add a sprite that tells us how much the value that sensor is reading is when there is light and when not.
+
+![Light Sense](pathname:///img/res/arcade/sl_5.png)
+
+Connect “GND” from the sensor to “GND” at the Arcade, and “VCC” from the sensor to the “3V” at the Arcade.
+Finally, choose a pin to control it, we connect “OUT” from the sensor to PIN0 at the Arcade
+
+![Light Sense](pathname:///img/res/arcade/sl_6.png)
+
+
+Now, we will program the sensor, using “analog read” If the sensor reads a low value (under 400 depending on your light while building the project) that means no need for light, which means the city has a nice morning. If there is no light detected by the sensor will give us a high value which means the city now is sleeping.
+
+![Light Sense](pathname:///img/res/arcade/sl_7.png)
+![Light Sense](pathname:///img/res/arcade/sl_8.gif)
+
