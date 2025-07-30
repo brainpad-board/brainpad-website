@@ -49,6 +49,10 @@ const config = {
           //editUrl:
             //`https://github.com/brainpad-board/brainpad-website/tree/dev`,
         },
+         gtag: {
+            trackingID: 'G-4KT4PWH2T5',
+            anonymizeIP: true,
+          },
         /*blog: {
           showReadingTime: true,
           feedOptions: {
