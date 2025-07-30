@@ -36,9 +36,7 @@ const sidebars = {
           label: "BrainPad Pulse",
           link: { type: "doc", id: "catalog/pulse" },
           items: [
-            "catalog/brainsense",
             "catalog/brainbot",
-            "catalog/braingamer",
           ],
         },
         "catalog/legacy",
