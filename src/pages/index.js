@@ -12,13 +12,16 @@ function HomepageHeader() {
   
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-   
-    
       <div className="container">
         <p>
+        <img src="/img/about-mission.jpg" alt="Learn to code things" />
+        <br/>
         BrainPad is a STEM coding platform, not a toy, though you can still <strong>PLAY</strong>.
         <br/>
         Understanding <strong>CODE</strong> is essential to <strong>EXCEL</strong> communities in a digitally-transformed-era.
+        <br/>
+        <br/>
+        <img src="/img/learn-to-code-things.png" alt="Learn to code things" />
         </p>
         
          <div className={styles.buttons}>
