@@ -97,6 +97,11 @@ const config = {
         },
         items: [
           {
+            href: '/docs/catalog/intro',
+            position: 'right',
+            label: 'Catalog',
+          },
+          {
             href: '/community',
             position: 'right',
             label: 'Community',
@@ -105,11 +110,6 @@ const config = {
             href: '/impact',
             position: 'right',
             label: 'Impact',
-          },
-          {
-            href: '/docs/catalog/intro',
-            position: 'right',
-            label: 'Catalog',
           },
           {
             href: '/docs/resources/intro',
