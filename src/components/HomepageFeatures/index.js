@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/communities.svg').default,
     description: (
       <>
-        Inclusive of all backgrounds and age groups to build  better future. 
+        Inclusive of all backgrounds and age-groups to build  better future. 
       </>
     ),
   },
