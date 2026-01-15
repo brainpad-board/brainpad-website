@@ -29,16 +29,10 @@ const sidebars = {
       link: { type: "doc", id: "catalog/intro" },
       items: [
         "catalog/arcade",
+        "catalog/pulse",
         "catalog/brainclip",
+        "catalog/brainbot",
         "catalog/brainpower",
-        {
-          type: "category",
-          label: "BrainPad Pulse",
-          link: { type: "doc", id: "catalog/pulse" },
-          items: [
-            "catalog/brainbot",
-          ],
-        },
         "catalog/legacy",
       ],
     },
